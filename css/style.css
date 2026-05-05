@@ -2582,10 +2582,42 @@ footer a:hover {
   width: 100%;
 }
 
+.google-map__placeholder {
+  align-items: center;
+  background: linear-gradient(180deg, #ffffff 0%, #f3f7fd 100%);
+  border: 1px solid rgba(46, 126, 237, 0.12);
+  color: #111111;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 500px;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+}
+
+.google-map__placeholder i {
+  color: #2e7eed;
+  font-size: 32px;
+}
+
+.google-map__placeholder strong {
+  font-size: 22px;
+}
+
+.google-map__placeholder p {
+  margin: 0;
+  max-width: 280px;
+}
+
 @media (max-width: 768px) {
 .google-map iframe {
   height: 350px;
   }
+
+.google-map__placeholder {
+  height: 350px;
+}
 }
 
 /* Contact Page Refresh */

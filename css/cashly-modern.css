@@ -5304,6 +5304,38 @@
   width: 100%;
 }
 
+.cashly-modern.contact-page .contact-map-placeholder {
+  align-items: center;
+  background:
+    radial-gradient(circle at top, rgba(127, 165, 255, 0.2), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
+  color: var(--cashly-text);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  height: 300px;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.cashly-modern.contact-page .contact-map-placeholder i {
+  color: var(--cashly-primary);
+  font-size: 2rem;
+}
+
+.cashly-modern.contact-page .contact-map-placeholder strong {
+  color: var(--cashly-text);
+  font-family: "Outfit", sans-serif;
+  font-size: 1.2rem;
+}
+
+.cashly-modern.contact-page .contact-map-placeholder p {
+  color: var(--cashly-muted);
+  margin: 0;
+  max-width: 260px;
+}
+
 .cashly-modern.contact-page .contact-map-shell__details {
   display: grid;
   gap: 16px;
