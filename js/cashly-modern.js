@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const googleCalendarBookingUrl = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2PwLnMIboXJYLmTsCPplmIsfxdOpZLqBosbVhaP4f5xH1Wp7McyVyYGjV9aMC20yGazrkx0koT";
   const callbackFormConfigs = [
     {
       form: document.getElementById("homeCallbackForm"),
@@ -121,6 +122,250 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (typeof mobileNavMediaQuery.addListener === "function") {
       mobileNavMediaQuery.addListener(resetDropdowns);
     }
+  }
+
+  const mainNav = document.querySelector(".main-nav");
+  const isHomePage = document.body.classList.contains("home-page");
+  const demoPopupWidget = document.getElementById("demoPopupWidget");
+  const demoPopupLauncher = document.getElementById("demoPopupLauncher");
+  const demoPopupPanel = document.getElementById("demoPopupPanel");
+  const demoPopupClose = document.getElementById("demoPopupClose");
+  const demoPopupCalendarFrame = document.getElementById("demoPopupCalendarFrame");
+  const demoPopupCalendarLink = document.getElementById("demoPopupCalendarLink");
+
+  if (
+    demoPopupWidget &&
+    demoPopupLauncher &&
+    demoPopupPanel &&
+    demoPopupClose &&
+    demoPopupCalendarFrame &&
+    demoPopupCalendarLink
+  ) {
+    demoPopupCalendarFrame.src = googleCalendarBookingUrl;
+    demoPopupCalendarLink.href = googleCalendarBookingUrl;
+    const demoPopupDesktopMedia = window.matchMedia("(min-width: 992px)");
+    let demoPopupCloseTimeoutId = 0;
+
+    const setDemoPopupOpen = (isOpen) => {
+      demoPopupWidget.classList.toggle("is-open", isOpen);
+      demoPopupLauncher.setAttribute("aria-expanded", String(isOpen));
+      demoPopupPanel.setAttribute("aria-hidden", String(!isOpen));
+    };
+
+    const clearDemoPopupCloseTimeout = () => {
+      if (demoPopupCloseTimeoutId) {
+        window.clearTimeout(demoPopupCloseTimeoutId);
+        demoPopupCloseTimeoutId = 0;
+      }
+    };
+
+    const queueDemoPopupClose = () => {
+      clearDemoPopupCloseTimeout();
+      demoPopupCloseTimeoutId = window.setTimeout(() => {
+        setDemoPopupOpen(false);
+      }, 120);
+    };
+
+    demoPopupLauncher.addEventListener("click", () => {
+      if (demoPopupDesktopMedia.matches) {
+        return;
+      }
+
+      setDemoPopupOpen(!demoPopupWidget.classList.contains("is-open"));
+    });
+
+    demoPopupClose.addEventListener("click", () => {
+      clearDemoPopupCloseTimeout();
+      setDemoPopupOpen(false);
+    });
+
+    if (demoPopupDesktopMedia.matches) {
+      setDemoPopupOpen(false);
+    }
+
+    demoPopupWidget.addEventListener("mouseenter", () => {
+      if (!demoPopupDesktopMedia.matches) {
+        return;
+      }
+
+      clearDemoPopupCloseTimeout();
+      setDemoPopupOpen(true);
+    });
+
+    demoPopupWidget.addEventListener("mouseleave", () => {
+      if (!demoPopupDesktopMedia.matches) {
+        return;
+      }
+
+      queueDemoPopupClose();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (demoPopupDesktopMedia.matches) {
+        return;
+      }
+
+      if (!demoPopupWidget.contains(event.target)) {
+        setDemoPopupOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        clearDemoPopupCloseTimeout();
+        setDemoPopupOpen(false);
+      }
+    });
+
+    const syncDemoPopupMode = () => {
+      clearDemoPopupCloseTimeout();
+      setDemoPopupOpen(false);
+    };
+
+    if (typeof demoPopupDesktopMedia.addEventListener === "function") {
+      demoPopupDesktopMedia.addEventListener("change", syncDemoPopupMode);
+    } else if (typeof demoPopupDesktopMedia.addListener === "function") {
+      demoPopupDesktopMedia.addListener(syncDemoPopupMode);
+    }
+  }
+
+  if (mainNav && isHomePage) {
+    const updateNavState = () => {
+      mainNav.classList.toggle("is-scrolled", window.scrollY > 24);
+    };
+
+    window.addEventListener("scroll", updateNavState, { passive: true });
+    updateNavState();
+  }
+
+  const interactiveHero = document.querySelector(".home-hero--product-update");
+  const heroTiltStage = interactiveHero ? interactiveHero.querySelector("[data-hero-tilt]") : null;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (isHomePage && !prefersReducedMotion.matches) {
+    document.body.classList.add("js-motion-ready");
+
+    const motionRevealSelectors = [
+      ".stat-highlight-card",
+      ".capability-card",
+      ".advantage-card",
+      ".value-card",
+      ".journey-step",
+      ".showcase-image",
+      ".showcase-copy",
+      ".workspace-panel__shell",
+      ".workspace-panel__visual",
+      ".faq-item-modern",
+      ".cta-banner"
+    ];
+    const motionRevealElements = Array.from(
+      document.querySelectorAll(motionRevealSelectors.join(","))
+    );
+
+    if ("IntersectionObserver" in window && motionRevealElements.length > 0) {
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.16,
+          rootMargin: "0px 0px -8% 0px"
+        }
+      );
+
+      motionRevealElements.forEach((element, index) => {
+        element.classList.add("motion-reveal");
+        element.style.setProperty("--motion-delay", `${(index % 6) * 70}ms`);
+        revealObserver.observe(element);
+      });
+    }
+
+    const statValues = Array.from(document.querySelectorAll(".stat-highlight-card strong"));
+    const animatedStatValues = statValues.filter((element) => /^\d+/.test(element.textContent.trim()));
+
+    if ("IntersectionObserver" in window && animatedStatValues.length > 0) {
+      const animateNumber = (element) => {
+        const originalText = element.textContent.trim();
+        const match = originalText.match(/^(\d+)(.*)$/);
+
+        if (!match) {
+          return;
+        }
+
+        const targetValue = Number.parseInt(match[1], 10);
+        const suffix = match[2] || "";
+        const duration = 1100;
+        const startTime = performance.now();
+
+        const updateValue = (currentTime) => {
+          const progress = Math.min((currentTime - startTime) / duration, 1);
+          const easedProgress = 1 - Math.pow(1 - progress, 3);
+          const currentValue = Math.round(targetValue * easedProgress);
+
+          element.textContent = `${currentValue}${suffix}`;
+
+          if (progress < 1) {
+            window.requestAnimationFrame(updateValue);
+          } else {
+            element.textContent = originalText;
+          }
+        };
+
+        window.requestAnimationFrame(updateValue);
+      };
+
+      const statObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            animateNumber(entry.target);
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.4
+        }
+      );
+
+      animatedStatValues.forEach((element) => {
+        statObserver.observe(element);
+      });
+    }
+  }
+
+  if (interactiveHero && heroTiltStage && !prefersReducedMotion.matches) {
+    const updateHeroMotion = (x, y) => {
+      heroTiltStage.style.setProperty("--hero-tilt-x", `${(-y * 6).toFixed(2)}deg`);
+      heroTiltStage.style.setProperty("--hero-tilt-y", `${(x * 7).toFixed(2)}deg`);
+      heroTiltStage.style.setProperty("--hero-parallax-x", `${(x * 16).toFixed(2)}px`);
+      heroTiltStage.style.setProperty("--hero-parallax-y", `${(y * 12).toFixed(2)}px`);
+    };
+
+    const handleHeroPointerMove = (event) => {
+      const rect = interactiveHero.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = ((event.clientY - rect.top) / rect.height) * 2 - 1;
+
+      updateHeroMotion(x, y);
+    };
+
+    const resetHeroMotion = () => {
+      updateHeroMotion(0, 0);
+    };
+
+    interactiveHero.addEventListener("pointermove", handleHeroPointerMove);
+    interactiveHero.addEventListener("pointerleave", resetHeroMotion);
+    resetHeroMotion();
   }
 
   const calculatorValueNextButton = document.getElementById("calculatorValueNextButton");
@@ -1234,7 +1479,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let leadChatTurnstileRenderPromise = null;
   let leadChatSubmitting = false;
   let leadChatCloseTimerId = 0;
-  const leadChatBookingUrl = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2PwLnMIboXJYLmTsCPplmIsfxdOpZLqBosbVhaP4f5xH1Wp7McyVyYGjV9aMC20yGazrkx0koT";
+  const leadChatBookingUrl = googleCalendarBookingUrl;
   const leadChatLead = {
     helpRequest: "",
     creditScore: "",

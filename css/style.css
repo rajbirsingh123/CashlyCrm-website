@@ -125,6 +125,18 @@ body {
   overflow-x: hidden;
 }
 
+.brand-lockup {
+  align-items: center;
+  display: inline-flex;
+  gap: 0;
+}
+
+.brand-lockup__image {
+  display: block;
+  height: 38px;
+  width: auto;
+}
+
 .shadow, .service .service-box, .founder img, .team-sm .image img, .job-list .block, .privacy .block, .user-login .block .image img, .coming-soon .block .count-down .syotimer-cell {
   box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.08);
 }
@@ -406,6 +418,8 @@ button:focus,
 }
 
 .main-nav .navbar-brand {
+  align-items: center;
+  display: inline-flex;
   padding: 0;
 }
 
@@ -596,7 +610,8 @@ button:focus,
   }
 }
 
-.footer-main .block img {
+.footer-main .block img,
+.footer-main .block .brand-lockup {
   margin-bottom: 20px;
 }
 
@@ -2547,13 +2562,14 @@ footer a:hover {
   position: relative;
 }
 
-.google-map #map_canvas {
+.google-map iframe {
+  border: 0;
   height: 500px;
   width: 100%;
 }
 
 @media (max-width: 768px) {
-.google-map #map_canvas {
+.google-map iframe {
   height: 350px;
   }
 }
@@ -3514,5 +3530,3 @@ footer a:hover {
     padding: 64px 0 28px;
   }
 }
-
-/*# sourceMappingURL=style.css.map */

@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Cashly CRM | Mortgage Broker Workspace</title>
+  <title>CashlyCRM | From Leads to Closed Deals</title>
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta
     name="description"
-    content="Cashly CRM helps mortgage and lending teams manage intake, lender matching, follow-up, and pipeline visibility from one clean workspace."
+    content="CashlyCRM is the complete mortgage brokerage platform for teams that want to close more deals, faster, with lead intake, call analytics, lender matching, tasks, and pipeline visibility in one system."
   >
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="author" content="Cashly">
 
-  <link rel="shortcut icon" type="image/x-icon" href="images/cashly-logo-nav.png">
+  <link rel="shortcut icon" type="image/x-icon" href="images/cashly-crm-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -27,11 +27,11 @@
   <link href="css/cashly-modern.css" rel="stylesheet">
 </head>
 
-<body class="body-wrapper cashly-modern broker-page">
+<body class="body-wrapper cashly-modern home-page">
   <nav class="navbar main-nav navbar-expand-lg px-3 px-lg-0">
     <div class="container">
-      <a class="navbar-brand logo" href="index.html" aria-label="Cashly CRM home">
-        <img src="images/cashly-logo-nav.png" alt="Cashly logo">
+      <a class="navbar-brand logo brand-lockup" href="index.html" aria-label="Cashly CRM home">
+        <img class="brand-lockup__image" src="images/cashly-crm-logo.png" alt="Cashly CRM logo">
       </a>
 
       <button
@@ -52,77 +52,117 @@
             <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="#platform">Platform</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#workflow">Workflow</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="team.html">Team</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-          <li class="nav-item nav-cta">
-            <a class="btn btn-main-md rate-cta-btn" href="contact.html#contact-form">Book a Demo</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
+  <div class="demo-popup" id="demoPopupWidget">
+    <button
+      type="button"
+      class="demo-popup__launcher"
+      id="demoPopupLauncher"
+      aria-expanded="false"
+      aria-controls="demoPopupPanel"
+    >
+      <span class="demo-popup__launcher-icon"><i class="ti-calendar"></i></span>
+      <span class="demo-popup__launcher-copy">Book a Demo</span>
+    </button>
+
+    <div
+      class="demo-popup__panel"
+      id="demoPopupPanel"
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="demoPopupTitle"
+      aria-hidden="true"
+    >
+      <div class="demo-popup__panel-head">
+        <div>
+          <span class="demo-popup__eyebrow">Google Calendar</span>
+          <h2 id="demoPopupTitle">Book your Cashly walkthrough</h2>
+        </div>
+        <button
+          type="button"
+          class="demo-popup__close"
+          id="demoPopupClose"
+          aria-label="Close booking popup"
+        >
+          <i class="ti-close"></i>
+        </button>
+      </div>
+
+      <p class="demo-popup__copy">
+        Pick a time to see how CashlyCRM helps brokerages move from leads to closed deals in one system.
+      </p>
+
+      <div class="demo-popup__calendar-shell">
+        <iframe
+          id="demoPopupCalendarFrame"
+          src="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2PwLnMIboXJYLmTsCPplmIsfxdOpZLqBosbVhaP4f5xH1Wp7McyVyYGjV9aMC20yGazrkx0koT"
+          title="Book a Cashly demo with Google Calendar"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
+
+      <div class="demo-popup__actions">
+        <a
+          id="demoPopupCalendarLink"
+          href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2PwLnMIboXJYLmTsCPplmIsfxdOpZLqBosbVhaP4f5xH1Wp7McyVyYGjV9aMC20yGazrkx0koT"
+          class="btn btn-main-md"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open Google Calendar
+        </a>
+        <a href="contact.html#contact-form" class="hero-text-link">Use contact form</a>
+      </div>
+    </div>
+  </div>
+
   <main class="page-shell">
-    <section class="hero-dark-section home-hero">
+    <section class="hero-dark-section home-hero home-hero--product-update">
       <div class="container position-relative">
-        <div class="row align-items-center">
-          <div class="col-lg-7">
-            <div class="section-title-modern" data-aos="fade-up">
-              <span class="section-kicker section-kicker--dark">Cashly CRM</span>
-              <h1>A cleaner CRM for mortgage teams managing fast-moving deals.</h1>
-              <p>
-                Cashly brings intake, lender matching, reminders, notes, and team visibility into one
-                workspace so brokers can spend less time chasing information and more time moving files forward.
+        <div class="hero-orb hero-orb--one"></div>
+        <div class="hero-orb hero-orb--two"></div>
+        <div class="row align-items-center justify-content-center">
+          <div class="col-lg-5">
+            <div class="section-title-modern home-hero__content" data-aos="fade-up">
+              <span class="hero-kicker">Cashly Platform</span>
+              <h1 class="hero-main-headline">
+                <span class="hero-line">Smart CRM</span>
+                <span class="hero-line hero-line--sub">for <span class="hero-highlight">Smart Brokers.</span></span>
+              </h1>
+              <p class="hero-copy-lead">
+                CashlyCRM is the complete mortgage brokerage platform for teams moving from leads to closed deals in one system.
               </p>
             </div>
 
             <div class="hero-actions" data-aos="fade-up" data-aos-delay="100">
-              <a href="contact.html#contact-form" class="btn btn-main-md">Book a Demo</a>
-              <a href="about.html" class="btn-secondary-modern">How Cashly Works</a>
-            </div>
-
-            <div class="content-chip-row" data-aos="fade-up" data-aos-delay="150">
-              <span>Pipeline visibility</span>
-              <span>Lender matching</span>
-              <span>Tasks and follow-up</span>
-            </div>
-
-            <div class="metric-grid metric-grid--three mt-4" data-aos="fade-up" data-aos-delay="200">
-              <div class="metric-card">
-                <span>Intake</span>
-                <p>Capture borrower details, property context, and notes in one structured workflow.</p>
-              </div>
-              <div class="metric-card">
-                <span>Matching</span>
-                <p>Keep lender-fit decisions tied to the actual file instead of scattered across inboxes.</p>
-              </div>
-              <div class="metric-card">
-                <span>Follow-up</span>
-                <p>Track owners, tasks, and next steps so nothing important gets lost between conversations.</p>
-              </div>
+              <a href="#platform" class="btn btn-main-md">Explore the Platform</a>
+              <a href="contact.html#contact-form" class="hero-text-link">Book a Demo</a>
             </div>
           </div>
 
-          <div class="col-lg-5 mt-5 mt-lg-0">
-            <div class="home-hero__visual" data-aos="fade-left">
-              <div class="floating-note floating-note--top">
-                <span>Daily visibility</span>
-                <strong>See the pipeline, file owner, and next action in one clean view.</strong>
-              </div>
-
-              <div class="visual-frame">
-                <img src="images/dashboard.png" alt="Cashly CRM dashboard preview">
-              </div>
-
-              <div class="floating-note floating-note--bottom">
-                <span>Built for brokers</span>
-                <strong>Keep contacts, documents, reminders, and lender communication together.</strong>
+          <div class="col-lg-7 mt-5 mt-lg-0">
+            <div class="hero-product-stage" data-aos="fade-left">
+              <div class="hero-product-visual" data-hero-tilt>
+                <img
+                  src="images/hero-product-polished.png"
+                  alt="CashlyCRM polished product visual"
+                >
               </div>
             </div>
           </div>
@@ -132,38 +172,190 @@
 
     <section class="page-section page-section--tight">
       <div class="container">
+        <div class="section-title-modern mb-5" data-aos="fade-up">
+          <span class="section-kicker">Proof Points</span>
+          <h2>Software for brokerages that need measurable execution.</h2>
+          <p>
+            CashlyCRM eliminates lead leakage, speeds up
+            lender matching, and gives teams the visibility they need to perform every day.
+          </p>
+        </div>
+
+        <div class="stat-highlight-grid stat-highlight-grid--three" data-aos="fade-up" data-aos-delay="100">
+          <article class="stat-highlight-card">
+            <strong>200+</strong>
+            <p>Calls per day can be routed, tracked, and coordinated inside one operating workflow.</p>
+          </article>
+          <article class="stat-highlight-card">
+            <strong>Zero</strong>
+            <p>Missed leads is the target when follow-up ownership, notes, and tasks live in one place.</p>
+          </article>
+          <article class="stat-highlight-card">
+            <strong>Instant</strong>
+            <p>Lender matching happens with borrower context, file details, and strategy attached.</p>
+          </article>
+        </div>
+
+        <div class="section-title-modern mt-5 mb-4" data-aos="fade-up" data-aos-delay="120">
+          <span class="section-kicker">Call Analytics Highlights</span>
+          <h2>See what brokers can understand at a glance inside Cashly.</h2>
+        </div>
+
+        <div class="capability-grid" data-aos="fade-up" data-aos-delay="150">
+          <article class="capability-card">
+            <i class="ti-bar-chart"></i>
+            <h3>Actionable Insights</h3>
+            <p>Track key metrics like handle time, total calls, and connection rate in real time.</p>
+          </article>
+          <article class="capability-card">
+            <i class="ti-user"></i>
+            <h3>Agent Performance</h3>
+            <p>See how your team is performing with cleaner analytics across daily call activity.</p>
+          </article>
+          <article class="capability-card">
+            <i class="ti-time"></i>
+            <h3>Hourly Call Trends</h3>
+            <p>Identify peak hours and optimize staffing for better lead response and follow-up.</p>
+          </article>
+          <article class="capability-card">
+            <i class="ti-pie-chart"></i>
+            <h3>Lead and Task Overview</h3>
+            <p>Monitor new leads, task status, and lead distribution in one polished command view.</p>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="page-section pt-0" id="platform">
+      <div class="container">
+        <div class="section-title-modern mb-5" data-aos="fade-up">
+          <span class="section-kicker">Integrations</span>
+          <h2>Connected to the mortgage systems your team already uses.</h2>
+          <p>
+            Cashly fits into real brokerage operations with partner connectivity for lender submission,
+            deal routing, and operational workflow continuity.
+          </p>
+        </div>
+
+        <div class="advantage-grid advantage-grid--simple" data-aos="fade-up" data-aos-delay="80">
+          <article class="advantage-card">
+            <i class="ti-exchange-vertical"></i>
+            <h3>Velocity</h3>
+            <p>Bring submission and workflow data into a more actionable operating layer for brokers and ops.</p>
+          </article>
+          <article class="advantage-card">
+            <i class="ti-link"></i>
+            <h3>Scarlett</h3>
+            <p>Support webhook-driven opportunity workflows, broker handoffs, and cleaner intake coordination.</p>
+          </article>
+          <article class="advantage-card">
+            <i class="ti-briefcase"></i>
+            <h3>BOSS</h3>
+            <p>Keep brokerage operations connected across partner systems instead of splitting work across tabs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section pt-0">
+      <div class="container">
+        <div class="workspace-panel" data-aos="fade-up">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <div class="workspace-panel__shell">
+                <span class="section-kicker">Platform Overview</span>
+                <h2>One platform across opportunities, calling, AI guidance, docs, and lender execution.</h2>
+                <p>
+                  The screenshots you shared point to something bigger than a basic CRM. Cashly runs the
+                  day-to-day brokerage stack with specialized workspaces for pipeline management, outreach,
+                  lender ranking, document intelligence, and broker productivity.
+                </p>
+
+                <div class="capability-grid">
+                  <article class="capability-card">
+                    <i class="ti-layout-list-thumb"></i>
+                    <h3>Opportunity pipeline</h3>
+                    <p>Run kanban and list workflows for every active file with stage-level accountability.</p>
+                  </article>
+                  <article class="capability-card">
+                    <i class="ti-headphone-alt"></i>
+                    <h3>Call analytics</h3>
+                    <p>Monitor handle time, connection rates, user activity, and call volume in one view.</p>
+                  </article>
+                  <article class="capability-card">
+                    <i class="ti-microphone"></i>
+                    <h3>Campaign calling</h3>
+                    <p>Track live campaign progress, call history, and outcomes from one outreach console.</p>
+                  </article>
+                  <article class="capability-card">
+                    <i class="ti-comments-smiley"></i>
+                    <h3>Broker Copilot</h3>
+                    <p>Draft follow-ups, summarize pipeline priorities, and assist brokers inside the workflow.</p>
+                  </article>
+                  <article class="capability-card">
+                    <i class="ti-target"></i>
+                    <h3>DealSense ranking</h3>
+                    <p>Rank lenders, compare approval probability, and explain the factors behind the match.</p>
+                  </article>
+                  <article class="capability-card">
+                    <i class="ti-files"></i>
+                    <h3>DocSense</h3>
+                    <p>Route extracted documents, review file metadata, and connect docs to the right deal.</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mt-4 mt-lg-0">
+              <div class="workspace-panel__visual">
+                <img src="images/products.png" alt="CashlyCRM product overview">
+                <p>
+                  Dashboards, queues, borrower records, and execution tools are organized to help teams
+                  move from raw lead flow to qualified files and funded deals without losing context.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section pt-0">
+      <div class="container">
         <div class="row align-items-center showcase-row">
           <div class="col-lg-6">
             <div class="showcase-image" data-aos="fade-right">
-              <img src="images/new.jpg" alt="Cashly CRM workflow preview">
+              <img src="images/products.png" alt="CashlyCRM lender product and borrower matching screen">
             </div>
           </div>
 
           <div class="col-lg-6 mt-4 mt-lg-0">
             <div class="showcase-copy" data-aos="fade-left">
-              <span class="section-kicker">Built for the real workflow</span>
-              <h2>Everything your team needs to manage the file lives in one place.</h2>
+              <span class="section-kicker">Lender Product Engine</span>
+              <h2>Upload lender products, map borrower fit, and operationalize lender matching.</h2>
               <p>
-                Cashly CRM is designed for the everyday work behind the deal: intake, qualification,
-                note-taking, lender outreach, handoffs, and borrower follow-up.
+                Cashly gives brokers and fulfillment teams a dedicated workspace for product uploads,
+                borrower matching, and accepted-borrower workflows so lender selection is not trapped in
+                separate spreadsheets or tribal knowledge.
               </p>
 
               <ul class="benefit-list">
                 <li>
                   <i class="ti-check"></i>
-                  <span>Keep every borrower record, status, and next step connected to the file.</span>
+                  <span>Manage lender products and criteria in a searchable internal catalog.</span>
                 </li>
                 <li>
                   <i class="ti-check"></i>
-                  <span>Reduce manual chasing with clearer ownership and follow-up tracking.</span>
+                  <span>Surface borrower-to-product alignment faster when opportunities are actively moving.</span>
                 </li>
                 <li>
                   <i class="ti-check"></i>
-                  <span>Organize notes, documents, and lender conversations around one source of truth.</span>
+                  <span>Support accepted-borrower handoff flows with cleaner document and summary actions.</span>
                 </li>
                 <li>
                   <i class="ti-check"></i>
-                  <span>Give borrowers a more professional experience with faster, cleaner communication.</span>
+                  <span>Keep matching logic inside the platform instead of losing it across disconnected tools.</span>
                 </li>
               </ul>
             </div>
@@ -174,77 +366,38 @@
 
     <section class="page-section pt-0">
       <div class="container">
-        <div class="journey-panel" data-aos="fade-up">
-          <div class="section-title-modern text-center">
-            <span class="section-kicker">How teams use Cashly</span>
-            <h2>A more reliable workflow from lead to funded file.</h2>
-            <p>
-              Cashly creates a consistent operating rhythm for teams managing intake, qualification, matching,
-              and day-to-day deal movement.
-            </p>
+        <div class="row align-items-center showcase-row">
+          <div class="col-lg-6 order-lg-2">
+            <div class="showcase-image" data-aos="fade-left">
+              <img src="images/autoDialer.png" alt="CashlyCRM campaign calling workspace">
+            </div>
           </div>
 
-          <div class="journey-grid journey-grid--four">
-            <article class="journey-step">
-              <span>01</span>
-              <strong>Capture intake</strong>
-              <p>Record the borrower story, property details, and first notes in a structured format.</p>
-            </article>
-            <article class="journey-step">
-              <span>02</span>
-              <strong>Qualify quickly</strong>
-              <p>Review the file with better context so the right recommendation is easier to make.</p>
-            </article>
-            <article class="journey-step">
-              <span>03</span>
-              <strong>Match lenders</strong>
-              <p>Compare lender fit and strategy without losing the supporting context behind the file.</p>
-            </article>
-            <article class="journey-step">
-              <span>04</span>
-              <strong>Move the deal</strong>
-              <p>Track follow-ups, reminders, and documents so the process stays organized through closing.</p>
-            </article>
+          <div class="col-lg-6 mt-4 mt-lg-0 order-lg-1">
+            <div class="showcase-copy" data-aos="fade-right">
+              <span class="section-kicker">Campaign Calling</span>
+              <h2>Give your calling team a live workspace for outreach, progress, and outcomes.</h2>
+              <p>
+                Cashly combines campaign progress, call history, lead state, and activity tracking in one
+                voice-ready experience so brokers can move quickly without losing visibility into what changed.
+              </p>
+
+              <ul class="benefit-list">
+                <li>
+                  <i class="ti-check"></i>
+                  <span>Track completed, failed, and remaining call outcomes at a glance.</span>
+                </li>
+                <li>
+                  <i class="ti-check"></i>
+                  <span>Pair campaign calling with contact details, history, notes, and qualification context.</span>
+                </li>
+                <li>
+                  <i class="ti-check"></i>
+                  <span>Help teams move faster on new leads without sacrificing follow-up discipline.</span>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page-section">
-      <div class="container">
-        <div class="section-title-modern text-center mb-5" data-aos="fade-up">
-          <span class="section-kicker">Core features</span>
-          <h2>CRM functionality shaped around brokerage work.</h2>
-          <p>
-            Cashly is not a generic sales CRM. It is organized around how mortgage teams actually evaluate,
-            coordinate, and advance a file.
-          </p>
-        </div>
-
-        <div class="service-grid-modern">
-          <article class="service-card-modern" data-aos="fade-up" data-aos-delay="50">
-            <i class="ti-panel"></i>
-            <h3>Pipeline management</h3>
-            <p>Track every file, owner, stage, and next action from first conversation through funding.</p>
-          </article>
-
-          <article class="service-card-modern" data-aos="fade-up" data-aos-delay="100">
-            <i class="ti-target"></i>
-            <h3>Lender matching</h3>
-            <p>Keep lender-fit thinking connected to borrower context and the strategy behind the deal.</p>
-          </article>
-
-          <article class="service-card-modern" data-aos="fade-up" data-aos-delay="150">
-            <i class="ti-bell"></i>
-            <h3>Task automation</h3>
-            <p>Set reminders, follow-up tasks, and ownership so the right work happens at the right time.</p>
-          </article>
-
-          <article class="service-card-modern" data-aos="fade-up" data-aos-delay="200">
-            <i class="ti-comments-smiley"></i>
-            <h3>Borrower updates</h3>
-            <p>Support a more polished experience with clearer communication and cleaner internal coordination.</p>
-          </article>
         </div>
       </div>
     </section>
@@ -254,22 +407,24 @@
         <div class="row align-items-center showcase-row">
           <div class="col-lg-6">
             <div class="showcase-image" data-aos="fade-right">
-              <img src="images/lenderMatching.png" alt="Cashly lender matching workflow">
+              <img src="images/lenderMatching.png" alt="CashlyCRM lender ranking and deal guidance">
             </div>
           </div>
 
           <div class="col-lg-6 mt-4 mt-lg-0">
             <div class="showcase-copy" data-aos="fade-left">
-              <span class="section-kicker">Lender matching</span>
-              <h2>Keep lender-fit thinking inside the same workspace.</h2>
+              <span class="section-kicker">DealSense</span>
+              <h2>Rank lender options with probability scoring and explainable guidance.</h2>
               <p>
-                Cashly helps teams compare borrower context, lender criteria, and deal strategy without
-                forcing important decisions into disconnected spreadsheets and inbox threads.
+                Your screenshots show a product that goes beyond simple lender lists. Cashly helps teams rank
+                likely lender fit, highlight positive and negative drivers, and keep the recommendation tied to
+                the actual opportunity.
               </p>
 
               <div class="quote-card">
                 <p>
-                  The goal is not more software. It is a cleaner operating system for how your team runs the file.
+                  Give brokers a clearer lender recommendation layer while keeping the final decision anchored
+                  to borrower context, opportunity status, and operational reality.
                 </p>
               </div>
             </div>
@@ -280,54 +435,190 @@
 
     <section class="page-section pt-0">
       <div class="container">
+        <div class="row align-items-center showcase-row">
+          <div class="col-lg-6 order-lg-2">
+            <div class="showcase-image" data-aos="fade-left">
+              <img src="images/borrower.png" alt="CashlyCRM accepted borrower and document handoff view">
+            </div>
+          </div>
+
+          <div class="col-lg-6 mt-4 mt-lg-0 order-lg-1">
+            <div class="showcase-copy" data-aos="fade-right">
+              <span class="section-kicker">Borrower and Docs</span>
+              <h2>Move accepted borrowers, extracted documents, and deal summaries through one system.</h2>
+              <p>
+                From accepted borrower queues to DocSense review flows, Cashly helps teams keep documents,
+                borrower states, and deal summaries attached to the right record instead of breaking the workflow
+                at the last mile.
+              </p>
+
+              <ul class="benefit-list">
+                <li>
+                  <i class="ti-check"></i>
+                  <span>Review extracted file metadata and route documents to the right contact or opportunity.</span>
+                </li>
+                <li>
+                  <i class="ti-check"></i>
+                  <span>Push borrower-ready actions and deal summaries from the same workspace.</span>
+                </li>
+                <li>
+                  <i class="ti-check"></i>
+                  <span>Keep operations, underwriting prep, and broker follow-up moving in sync.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section pt-0" id="workflow">
+      <div class="container">
+        <div class="journey-panel" data-aos="fade-up">
+          <div class="section-title-modern">
+            <span class="section-kicker">Workflow</span>
+            <h2>A complete brokerage operating flow from intake to lender outcome.</h2>
+            <p class="journey-panel__lead">
+              Cashly combines the front-office and fulfillment layers brokers actually need: lead capture,
+              call execution, opportunity management, lender guidance, document handling, and closing workflow.
+            </p>
+          </div>
+
+          <div class="journey-grid journey-grid--four">
+            <article class="journey-step">
+              <span>01</span>
+              <strong>Capture and route</strong>
+              <p>Bring in new leads, assign ownership, and connect intake to the right opportunity workflow.</p>
+            </article>
+            <article class="journey-step">
+              <span>02</span>
+              <strong>Call and qualify</strong>
+              <p>Use campaign calling, contact context, and qualification history to move faster on the file.</p>
+            </article>
+            <article class="journey-step">
+              <span>03</span>
+              <strong>Rank and match</strong>
+              <p>Compare lender products, fit scores, and accepted-borrower pathways inside one operating system.</p>
+            </article>
+            <article class="journey-step">
+              <span>04</span>
+              <strong>Extract and close</strong>
+              <p>Route docs, track tasks, manage handoffs, and push the file through to the final outcome.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section pt-0">
+      <div class="container">
+        <div class="section-title-modern mb-5" data-aos="fade-up">
+          <span class="section-kicker">Why Teams Choose CashlyCRM</span>
+          <h2>Mortgage-specific advantages that generic CRMs usually miss.</h2>
+          <p>
+            Cashly is designed around the actual brokerage stack, not retrofitted from a general-purpose sales CRM.
+          </p>
+        </div>
+
+        <div class="advantage-grid advantage-grid--simple" data-aos="fade-up" data-aos-delay="100">
+          <article class="advantage-card">
+            <i class="ti-bolt"></i>
+            <h3>Purpose-built mortgage workflow</h3>
+            <p>Pipeline stages, lender workflows, borrower tasks, and outreach live in one brokerage-native flow.</p>
+          </article>
+          <article class="advantage-card">
+            <i class="ti-headphone-alt"></i>
+            <h3>Built-in calling and visibility</h3>
+            <p>Teams can manage call performance and outreach momentum without bolting on a separate command center.</p>
+          </article>
+          <article class="advantage-card">
+            <i class="ti-light-bulb"></i>
+            <h3>Guided lender decisions</h3>
+            <p>Use ranking, matching, and explanation layers to make lender-fit decisions faster and with more confidence.</p>
+          </article>
+        </div>
+
+        <div class="value-grid mt-4" data-aos="fade-up" data-aos-delay="150">
+          <article class="value-card">
+            <i class="ti-plug"></i>
+            <h3>Partner connectivity</h3>
+            <p>Velocity, Scarlett, and BOSS integrations help Cashly fit real mortgage operations.</p>
+          </article>
+          <article class="value-card">
+            <i class="ti-files"></i>
+            <h3>Document intelligence</h3>
+            <p>DocSense keeps extraction, review, and routing closer to the active file and contact record.</p>
+          </article>
+          <article class="value-card">
+            <i class="ti-shield"></i>
+            <h3>Safer public product storytelling</h3>
+            <p>Website visuals can stay impressive while using demo-safe views instead of exposing live customer data.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section pt-0">
+      <div class="container">
         <div class="faq-shell" data-aos="fade-up">
           <div class="faq-shell__inner">
             <div class="section-title-modern mb-4">
               <span class="section-kicker">Frequently Asked Questions</span>
-              <h2>Short answers for teams evaluating Cashly CRM.</h2>
+              <h2>Quick answers for brokerages evaluating the platform.</h2>
             </div>
 
             <div class="faq-list-modern">
               <details class="faq-item-modern" open>
                 <summary>
-                  What is Cashly CRM?
+                  What is CashlyCRM?
                   <i class="ti-angle-down"></i>
                 </summary>
                 <p>
-                  Cashly CRM is a broker workspace for managing borrower intake, lender matching, notes,
-                  follow-up, and pipeline visibility in one place.
+                  CashlyCRM is a mortgage brokerage platform that helps teams manage leads, calls, intake,
+                  lender matching, task execution, and deal progression in one system.
                 </p>
               </details>
 
               <details class="faq-item-modern">
                 <summary>
-                  Who is it for?
+                  Who is it built for?
                   <i class="ti-angle-down"></i>
                 </summary>
                 <p>
-                  It is built for mortgage and lending teams that need a clearer way to manage active files
-                  and coordinate work across brokers and support staff.
+                  It is built for mortgage brokerages and lending teams that need operational control across
+                  high lead volume, active files, and fast-moving internal workflows.
                 </p>
               </details>
 
               <details class="faq-item-modern">
                 <summary>
-                  Can it replace spreadsheets and scattered notes?
+                  Which integrations are supported?
                   <i class="ti-angle-down"></i>
                 </summary>
                 <p>
-                  That is the goal. Cashly centralizes file details, progress, reminders, and conversations
-                  so the team works from one shared view.
+                  Cashly is integrated with Velocity, Scarlett, and BOSS, and the platform is designed to
+                  support mortgage-specific operational connectivity instead of forcing teams into generic CRM flows.
                 </p>
               </details>
 
               <details class="faq-item-modern">
                 <summary>
-                  How do we get a demo?
+                  Are the website screenshots using real customer data?
                   <i class="ti-angle-down"></i>
                 </summary>
                 <p>
-                  Use the contact page to request a walkthrough and we will follow up with the best next step.
+                  No. Public-facing visuals should use sanitized demo-style information so the product can be
+                  shown clearly without exposing real borrower, broker, or file information.
+                </p>
+              </details>
+
+              <details class="faq-item-modern">
+                <summary>
+                  How do we see the product in action?
+                  <i class="ti-angle-down"></i>
+                </summary>
+                <p>
+                  Use the contact page to book a demo and we will walk you through the platform based on your workflow.
                 </p>
               </details>
             </div>
@@ -341,11 +632,11 @@
         <div class="cta-banner" data-aos="fade-up">
           <div class="row align-items-center">
             <div class="col-lg-8">
-              <span class="section-kicker">See it in action</span>
-              <h2>Book a walkthrough of the Cashly CRM workspace.</h2>
+              <span class="section-kicker">Book a Walkthrough</span>
+              <h2>See how CashlyCRM helps brokerages close more deals, faster.</h2>
               <p>
-                We will show how your team can manage intake, matching, follow-up, and file visibility
-                with a cleaner day-to-day workflow.
+                We will show you how the platform handles lead intake, call visibility, lender matching,
+                task coordination, and full pipeline execution in one system.
               </p>
             </div>
 
@@ -364,11 +655,11 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-5 mb-5 mb-lg-0">
-          <a class="site-footer__brand" href="index.html" aria-label="Cashly CRM home">
-            <img src="images/cashly-logo-nav.png" alt="Cashly logo">
+          <a class="site-footer__brand brand-lockup brand-lockup--footer" href="index.html" aria-label="Cashly CRM home">
+            <img class="brand-lockup__image" src="images/cashly-crm-logo.png" alt="Cashly CRM logo">
           </a>
           <p class="site-footer__copy">
-            Cashly CRM helps mortgage teams run intake, lender matching, follow-up, and file visibility from one workspace.
+            CashlyCRM is the complete mortgage brokerage platform for teams moving from leads to closed deals in one system.
           </p>
           <div class="site-footer__socials">
             <a href="mailto:operations@gocashly.io" aria-label="Email Cashly">
@@ -389,8 +680,9 @@
           <h6>Explore</h6>
           <ul class="site-footer__links">
             <li><a href="index.html">Home</a></li>
+            <li><a href="#platform">Platform</a></li>
+            <li><a href="#workflow">Workflow</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="team.html">Team</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -415,7 +707,7 @@
       </div>
 
       <div class="site-footer__bottom">
-        <p>Built for broker teams that need more clarity and control.</p>
+        <p>Designed for brokerages that need speed, visibility, and cleaner execution.</p>
         <a href="contact.html#contact-form">Book a demo</a>
       </div>
     </div>

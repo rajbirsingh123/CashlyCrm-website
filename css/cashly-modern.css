@@ -55,8 +55,23 @@
           backdrop-filter: blur(16px);
 }
 
-.cashly-modern .main-nav .navbar-brand img {
-  max-height: 52px;
+.cashly-modern .main-nav .navbar-brand {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.9rem;
+}
+
+.cashly-modern .brand-lockup {
+  align-items: center;
+  display: inline-flex;
+  gap: 0;
+}
+
+.cashly-modern .brand-lockup__image {
+  display: block;
+  height: 40px;
+  max-height: 40px;
+  width: auto;
 }
 
 .cashly-modern .main-nav .navbar-nav .nav-item {
@@ -546,7 +561,7 @@
 }
 
 .cashly-modern .page-section--tight {
-  padding-top: 74px;
+  padding-top: 42px;
 }
 
 .cashly-modern .pillar-grid {
@@ -2079,6 +2094,821 @@
           transform: none;
 }
 
+.cashly-modern.home-page .main-nav {
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid rgba(27, 36, 54, 0.06);
+  box-shadow: none;
+  transition: background 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.cashly-modern.home-page .main-nav.is-scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom-color: rgba(27, 36, 54, 0.08);
+  box-shadow: 0 16px 36px rgba(58, 66, 84, 0.06);
+}
+
+.cashly-modern.home-page .main-nav .navbar-nav .nav-link {
+  color: rgba(33, 42, 60, 0.74);
+}
+
+.cashly-modern.home-page .main-nav .navbar-nav .nav-link:hover,
+.cashly-modern.home-page .main-nav .navbar-nav .nav-link:focus,
+.cashly-modern.home-page .main-nav .navbar-nav .nav-item.active .nav-link {
+  color: #172033;
+}
+
+.cashly-modern.home-page .navbar-toggler {
+  border-color: rgba(27, 36, 54, 0.14);
+}
+
+.cashly-modern.home-page .navbar-toggler span {
+  color: #172033;
+}
+
+.cashly-modern.home-page .home-hero--product-update {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(235, 242, 255, 0.72), transparent 22%),
+    radial-gradient(circle at 86% 14%, rgba(240, 246, 255, 0.82), transparent 24%),
+    linear-gradient(180deg, #ffffff 0%, #fbfcff 56%, #ffffff 100%);
+  min-height: 90vh;
+  padding-bottom: 64px;
+  padding-top: 110px;
+}
+
+.cashly-modern.home-page .home-hero--product-update::before {
+  background:
+    radial-gradient(circle at 74% 30%, rgba(232, 240, 255, 0.5), transparent 20%),
+    linear-gradient(90deg, rgba(23, 32, 51, 0.025) 1px, transparent 1px),
+    linear-gradient(rgba(23, 32, 51, 0.025) 1px, transparent 1px);
+  background-size: auto, 140px 140px, 140px 140px;
+  content: "";
+  inset: 0;
+  opacity: 0.6;
+  pointer-events: none;
+  position: absolute;
+}
+
+.cashly-modern.home-page .home-hero--product-update .container.position-relative {
+  align-items: center;
+  min-height: 0;
+}
+
+.cashly-modern.home-page .home-hero--product-update .row.align-items-center.justify-content-center > [class*="col-"] {
+  min-height: 0;
+}
+
+.cashly-modern.home-page .home-hero--product-update .hero-orb--one {
+  background: rgba(211, 229, 255, 0.34);
+  height: 320px;
+  left: -80px;
+  top: 88px;
+  width: 320px;
+}
+
+.cashly-modern.home-page .home-hero--product-update .hero-orb--two {
+  background: rgba(229, 236, 255, 0.42);
+  bottom: 12%;
+  height: 240px;
+  right: -48px;
+  width: 240px;
+}
+
+.cashly-modern.home-page .home-hero__content {
+  max-width: 34rem;
+  position: relative;
+  text-align: left;
+  z-index: 3;
+}
+
+.cashly-modern.home-page .hero-kicker {
+  color: #5b6a85;
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.cashly-modern.home-page .home-hero--product-update .hero-main-headline {
+  color: #101a2b;
+  font-size: clamp(3.15rem, 6vw, 5.35rem);
+  letter-spacing: -0.05em;
+  line-height: 0.96;
+  margin: 0 0 1.1rem;
+  max-width: 11ch;
+  text-shadow: none;
+}
+
+.cashly-modern.home-page .home-hero--product-update .hero-line {
+  display: block;
+}
+
+.cashly-modern.home-page .home-hero--product-update .hero-line--sub {
+  font-size: 0.86em;
+}
+
+.cashly-modern.home-page .home-hero--product-update .hero-highlight {
+  background: linear-gradient(180deg, #3d6ff0 0%, #2448bb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 100% 100%;
+}
+
+.cashly-modern.home-page .home-hero--product-update .hero-copy-lead {
+  color: #4d5a73;
+  font-size: 1.08rem;
+  font-weight: 500;
+  line-height: 1.68;
+  margin: 0;
+  max-width: 31rem;
+}
+
+.cashly-modern.home-page .home-hero--product-update .hero-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.8rem 0 0;
+  padding-top: 0;
+}
+
+.cashly-modern.home-page .home-hero--product-update .btn-main-md {
+  box-shadow: 0 18px 34px rgba(56, 96, 197, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.cashly-modern.home-page .hero-text-link {
+  color: #172033;
+  font-size: 0.98rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cashly-modern.home-page .hero-text-link:hover,
+.cashly-modern.home-page .hero-text-link:focus {
+  color: #2448bb;
+  text-decoration: none;
+}
+
+.cashly-modern.home-page .hero-product-stage {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  max-width: 1220px;
+  min-height: 760px;
+  perspective: 1800px;
+  padding-left: 2.5rem;
+  position: relative;
+  width: 100%;
+}
+
+.cashly-modern.home-page .hero-product-stage::before {
+  background:
+    radial-gradient(circle at 58% 48%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 62%),
+    radial-gradient(circle at 76% 72%, rgba(223, 233, 255, 0.55), rgba(223, 233, 255, 0) 52%);
+  content: "";
+  inset: 2% 0 8% 6%;
+  pointer-events: none;
+  position: absolute;
+}
+
+.cashly-modern.home-page .hero-product-visual {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(247, 250, 255, 0.94));
+  border: 1px solid rgba(27, 36, 54, 0.07);
+  border-radius: 38px;
+  box-shadow:
+    0 30px 70px rgba(45, 63, 100, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+  padding: 1.1rem;
+  position: relative;
+  -webkit-transform: perspective(1800px) rotateX(var(--hero-tilt-x, 0deg)) rotateY(var(--hero-tilt-y, 0deg)) translate3d(var(--hero-parallax-x, 0), var(--hero-parallax-y, 0), 0);
+          transform: perspective(1800px) rotateX(var(--hero-tilt-x, 0deg)) rotateY(var(--hero-tilt-y, 0deg)) translate3d(var(--hero-parallax-x, 0), var(--hero-parallax-y, 0), 0);
+  transition: box-shadow 0.35s ease, -webkit-transform 0.35s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
+  width: min(1220px, 100%);
+  will-change: transform;
+  z-index: 1;
+}
+
+.cashly-modern.home-page .hero-product-visual::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 249, 255, 0.8));
+  border-bottom: 1px solid rgba(27, 36, 54, 0.07);
+  content: "";
+  height: 28px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.cashly-modern.home-page .hero-product-visual::after {
+  background:
+    radial-gradient(circle, rgba(203, 214, 238, 0.72) 0, rgba(203, 214, 238, 0.72) 3px, transparent 4px),
+    radial-gradient(circle, rgba(203, 214, 238, 0.72) 0, rgba(203, 214, 238, 0.72) 3px, transparent 4px),
+    radial-gradient(circle, rgba(203, 214, 238, 0.72) 0, rgba(203, 214, 238, 0.72) 3px, transparent 4px);
+  background-position: 0 0, 16px 0, 32px 0;
+  background-repeat: no-repeat;
+  content: "";
+  height: 8px;
+  left: 1.35rem;
+  position: absolute;
+  top: 10px;
+  width: 44px;
+  z-index: 3;
+}
+
+.cashly-modern.home-page .hero-product-visual img {
+  border-radius: 28px;
+  display: block;
+  filter: saturate(1.02) drop-shadow(0 20px 34px rgba(56, 62, 79, 0.08));
+  height: auto;
+  max-width: none;
+  position: relative;
+  top: 10px;
+  width: 100%;
+}
+
+.cashly-modern.home-page .hero-product-visual:hover {
+  box-shadow:
+    0 38px 90px rgba(45, 63, 100, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.cashly-modern.home-page .demo-popup {
+  left: 0;
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 1040;
+}
+
+.cashly-modern.home-page .demo-popup__launcher {
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(27, 36, 54, 0.08);
+  border-left: 0;
+  border-radius: 0 999px 999px 0;
+  box-shadow: 0 18px 42px rgba(30, 49, 84, 0.12);
+  color: #172033;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 0.8rem;
+  min-height: 58px;
+  padding: 0.85rem 1.05rem;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  transition: box-shadow 0.25s ease, -webkit-transform 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, -webkit-transform 0.25s ease;
+}
+
+.cashly-modern.home-page .demo-popup__launcher:hover,
+.cashly-modern.home-page .demo-popup__launcher:focus {
+  box-shadow: 0 24px 48px rgba(30, 49, 84, 0.18);
+  outline: none;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.cashly-modern.home-page .demo-popup.is-open .demo-popup__launcher {
+  -webkit-transform: translateX(10px);
+          transform: translateX(10px);
+}
+
+.cashly-modern.home-page .demo-popup__launcher-icon {
+  align-items: center;
+  background: rgba(61, 111, 240, 0.1);
+  border-radius: 50%;
+  color: #2952c8;
+  display: inline-flex;
+  font-size: 18px;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+
+.cashly-modern.home-page .demo-popup__launcher-copy {
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.cashly-modern.home-page .demo-popup__panel {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(27, 36, 54, 0.08);
+  border-radius: 28px;
+  box-shadow: 0 34px 80px rgba(30, 49, 84, 0.18);
+  left: calc(100% + 14px);
+  max-width: min(420px, calc(100vw - 48px));
+  opacity: 0;
+  padding: 1.25rem;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate3d(-18px, -50%, 0);
+          transform: translate3d(-18px, -50%, 0);
+  transition: opacity 0.24s ease, visibility 0.24s ease, -webkit-transform 0.24s ease;
+  transition: opacity 0.24s ease, transform 0.24s ease, visibility 0.24s ease;
+  transition: opacity 0.24s ease, transform 0.24s ease, visibility 0.24s ease, -webkit-transform 0.24s ease;
+  visibility: hidden;
+  width: 420px;
+}
+
+.cashly-modern.home-page .demo-popup.is-open .demo-popup__panel {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: translate3d(0, -50%, 0);
+          transform: translate3d(0, -50%, 0);
+  visibility: visible;
+}
+
+.cashly-modern.home-page .demo-popup__panel-head {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.cashly-modern.home-page .demo-popup__eyebrow {
+  color: #6b7691;
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.45rem;
+  text-transform: uppercase;
+}
+
+.cashly-modern.home-page .demo-popup__panel-head h2 {
+  color: #122037;
+  font-size: 1.35rem;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.cashly-modern.home-page .demo-popup__close {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  color: #6b7691;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 16px;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+
+.cashly-modern.home-page .demo-popup__close:hover,
+.cashly-modern.home-page .demo-popup__close:focus {
+  background: rgba(61, 111, 240, 0.08);
+  color: #2448bb;
+  outline: none;
+}
+
+.cashly-modern.home-page .demo-popup__copy {
+  color: #54617b;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  margin: 0.9rem 0 1rem;
+  text-align: left;
+}
+
+.cashly-modern.home-page .demo-popup__calendar-shell {
+  background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
+  border: 1px solid rgba(27, 36, 54, 0.08);
+  border-radius: 20px;
+  min-height: 340px;
+  overflow: hidden;
+}
+
+.cashly-modern.home-page .demo-popup__calendar-shell iframe {
+  border: 0;
+  display: block;
+  height: 340px;
+  width: 100%;
+}
+
+.cashly-modern.home-page .demo-popup__actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.cashly-modern.home-page .demo-popup__actions .hero-text-link {
+  font-size: 0.92rem;
+}
+
+.cashly-modern.home-page .page-section,
+.cashly-modern.home-page .page-section.pt-0 {
+  padding-bottom: 84px;
+  padding-top: 84px !important;
+}
+
+.cashly-modern.home-page .page-section--tight {
+  padding-top: 52px !important;
+}
+
+.cashly-modern.home-page .home-hero__content,
+.cashly-modern.home-page .section-title-modern,
+.cashly-modern.home-page .workspace-panel__shell,
+.cashly-modern.home-page .workspace-panel__visual,
+.cashly-modern.home-page .showcase-copy,
+.cashly-modern.home-page .quote-card,
+.cashly-modern.home-page .journey-panel,
+.cashly-modern.home-page .cta-banner,
+.cashly-modern.home-page .faq-shell,
+.cashly-modern.home-page .site-footer,
+.cashly-modern.home-page .site-footer__bottom,
+.cashly-modern.home-page .site-footer__bottom-copy {
+  text-align: center;
+}
+
+.cashly-modern.home-page .home-hero__content,
+.cashly-modern.home-page .workspace-panel__shell,
+.cashly-modern.home-page .showcase-copy,
+.cashly-modern.home-page .cta-banner > .row > [class*="col-"]:first-child {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cashly-modern.home-page .section-title-modern p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cashly-modern.home-page .hero-actions,
+.cashly-modern.home-page .site-footer__socials,
+.cashly-modern.home-page .site-footer__powered-row,
+.cashly-modern.home-page .site-footer__bottom,
+.cashly-modern.home-page .cta-banner__actions,
+.cashly-modern.home-page .benefit-list li {
+  justify-content: center;
+}
+
+.cashly-modern.home-page .workspace-panel .row,
+.cashly-modern.home-page .showcase-row,
+.cashly-modern.home-page .cta-banner .row {
+  justify-content: center;
+}
+
+.cashly-modern.home-page .workspace-panel__visual img,
+.cashly-modern.home-page .showcase-image img,
+.cashly-modern.home-page .hero-product-visual {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cashly-modern.home-page .benefit-list {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 44rem;
+}
+
+.cashly-modern.home-page .benefit-list li {
+  align-items: center;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+.cashly-modern.home-page .benefit-list i {
+  margin-top: 0;
+}
+
+.cashly-modern.home-page .capability-card,
+.cashly-modern.home-page .stat-highlight-card,
+.cashly-modern.home-page .advantage-card,
+.cashly-modern.home-page .value-card,
+.cashly-modern.home-page .faq-item-modern,
+.cashly-modern.home-page .quote-card,
+.cashly-modern.home-page .workspace-panel__visual,
+.cashly-modern.home-page .workspace-panel__shell {
+  text-align: center;
+}
+
+.cashly-modern.home-page .site-footer__copy {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cashly-modern.home-page .site-footer__links {
+  text-align: center;
+}
+
+.cashly-modern.home-page .workspace-panel__shell,
+.cashly-modern.home-page .workspace-panel__visual,
+.cashly-modern.home-page .showcase-image,
+.cashly-modern.home-page .showcase-copy,
+.cashly-modern.home-page .stat-highlight-card,
+.cashly-modern.home-page .capability-card,
+.cashly-modern.home-page .advantage-card,
+.cashly-modern.home-page .value-card,
+.cashly-modern.home-page .journey-step,
+.cashly-modern.home-page .cta-banner,
+.cashly-modern.home-page .faq-item-modern {
+  position: relative;
+}
+
+.cashly-modern.home-page .workspace-panel__shell::before,
+.cashly-modern.home-page .workspace-panel__visual::before,
+.cashly-modern.home-page .showcase-image::before,
+.cashly-modern.home-page .stat-highlight-card::before,
+.cashly-modern.home-page .capability-card::before,
+.cashly-modern.home-page .advantage-card::before,
+.cashly-modern.home-page .value-card::before,
+.cashly-modern.home-page .journey-step::before,
+.cashly-modern.home-page .cta-banner::before {
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.65) 45%, transparent 100%);
+  content: "";
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  -webkit-transform: translateX(-120%);
+          transform: translateX(-120%);
+  transition: opacity 0.3s ease, -webkit-transform 0.8s ease;
+  transition: transform 0.8s ease, opacity 0.3s ease;
+  transition: transform 0.8s ease, opacity 0.3s ease, -webkit-transform 0.8s ease;
+}
+
+.cashly-modern.home-page .workspace-panel__shell:hover::before,
+.cashly-modern.home-page .workspace-panel__visual:hover::before,
+.cashly-modern.home-page .showcase-image:hover::before,
+.cashly-modern.home-page .stat-highlight-card:hover::before,
+.cashly-modern.home-page .capability-card:hover::before,
+.cashly-modern.home-page .advantage-card:hover::before,
+.cashly-modern.home-page .value-card:hover::before,
+.cashly-modern.home-page .journey-step:hover::before,
+.cashly-modern.home-page .cta-banner:hover::before {
+  opacity: 1;
+  -webkit-transform: translateX(120%);
+          transform: translateX(120%);
+}
+
+.cashly-modern.home-page .stat-highlight-card,
+.cashly-modern.home-page .capability-card,
+.cashly-modern.home-page .advantage-card,
+.cashly-modern.home-page .value-card,
+.cashly-modern.home-page .journey-step {
+  overflow: hidden;
+}
+
+.cashly-modern.home-page .stat-highlight-card strong,
+.cashly-modern.home-page .capability-card h3,
+.cashly-modern.home-page .advantage-card h3,
+.cashly-modern.home-page .value-card h3,
+.cashly-modern.home-page .journey-step strong {
+  transition: color 0.28s ease, -webkit-transform 0.28s ease;
+  transition: color 0.28s ease, transform 0.28s ease;
+  transition: color 0.28s ease, transform 0.28s ease, -webkit-transform 0.28s ease;
+}
+
+.cashly-modern.home-page .stat-highlight-card:hover strong,
+.cashly-modern.home-page .capability-card:hover h3,
+.cashly-modern.home-page .advantage-card:hover h3,
+.cashly-modern.home-page .value-card:hover h3,
+.cashly-modern.home-page .journey-step:hover strong {
+  color: #214a9b;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.cashly-modern.home-page.js-motion-ready .motion-reveal {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 28px, 0) scale(0.985);
+          transform: translate3d(0, 28px, 0) scale(0.985);
+  transition:
+    opacity 0.7s ease,
+    -webkit-transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    -webkit-transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--motion-delay, 0ms);
+}
+
+.cashly-modern.home-page.js-motion-ready .motion-reveal.is-visible {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0) scale(1);
+          transform: translate3d(0, 0, 0) scale(1);
+}
+
+.cashly-modern.home-page .workspace-panel__shell,
+.cashly-modern.home-page .capability-card,
+.cashly-modern.home-page .stat-highlight-card,
+.cashly-modern.home-page .value-card,
+.cashly-modern.home-page .advantage-card,
+.cashly-modern.home-page .journey-step,
+.cashly-modern.home-page .faq-item-modern,
+.cashly-modern.home-page .showcase-image,
+.cashly-modern.home-page .workspace-panel__visual {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.cashly-modern.home-page .workspace-panel__shell:hover,
+.cashly-modern.home-page .capability-card:hover,
+.cashly-modern.home-page .stat-highlight-card:hover,
+.cashly-modern.home-page .value-card:hover,
+.cashly-modern.home-page .advantage-card:hover,
+.cashly-modern.home-page .journey-step:hover,
+.cashly-modern.home-page .faq-item-modern:hover,
+.cashly-modern.home-page .showcase-image:hover,
+.cashly-modern.home-page .workspace-panel__visual:hover {
+  box-shadow: 0 26px 58px rgba(26, 52, 97, 0.12);
+  transform: translateY(-6px);
+}
+
+@-webkit-keyframes dashboardDrift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes dashboardDrift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@media (max-width: 991px) {
+  .cashly-modern.home-page .main-nav .navbar-collapse {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(27, 36, 54, 0.08);
+  }
+
+  .cashly-modern.home-page .home-hero--product-update {
+    min-height: 0;
+    padding-bottom: 72px;
+    padding-top: 100px;
+  }
+
+  .cashly-modern.home-page .home-hero--product-update .hero-main-headline {
+    max-width: 11ch;
+  }
+
+  .cashly-modern.home-page .hero-product-stage {
+    justify-content: center;
+    min-height: 440px;
+    max-width: none;
+    padding-left: 0;
+  }
+
+  .cashly-modern.home-page .hero-product-visual img {
+    width: 100%;
+  }
+
+  .cashly-modern.home-page .demo-popup {
+    bottom: 18px;
+    left: 18px;
+    top: auto;
+    -webkit-transform: none;
+            transform: none;
+  }
+
+  .cashly-modern.home-page .demo-popup__launcher {
+    border-left: 1px solid rgba(27, 36, 54, 0.08);
+    border-radius: 999px;
+  }
+
+  .cashly-modern.home-page .demo-popup.is-open .demo-popup__launcher {
+    -webkit-transform: none;
+            transform: none;
+  }
+
+  .cashly-modern.home-page .demo-popup__panel {
+    bottom: calc(100% + 12px);
+    left: 0;
+    max-width: min(420px, calc(100vw - 36px));
+    top: auto;
+    -webkit-transform: translate3d(0, 14px, 0);
+            transform: translate3d(0, 14px, 0);
+    width: min(420px, calc(100vw - 36px));
+  }
+
+  .cashly-modern.home-page .demo-popup.is-open .demo-popup__panel {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+
+  .cashly-modern.home-page .page-section,
+  .cashly-modern.home-page .page-section.pt-0 {
+    padding-bottom: 72px;
+    padding-top: 72px !important;
+  }
+
+  .cashly-modern.home-page .page-section--tight {
+    padding-top: 44px !important;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .cashly-modern.home-page .main-nav .navbar-brand img {
+    max-height: 46px;
+  }
+
+  .cashly-modern.home-page .home-hero--product-update {
+    padding-bottom: 56px;
+    padding-top: 92px;
+  }
+
+  .cashly-modern.home-page .hero-kicker {
+    font-size: 0.76rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .cashly-modern.home-page .home-hero--product-update .hero-main-headline {
+    font-size: clamp(2.6rem, 12vw, 3.6rem);
+    max-width: none;
+  }
+
+  .cashly-modern.home-page .home-hero--product-update .hero-copy-lead {
+    font-size: 1rem;
+  }
+
+  .cashly-modern.home-page .demo-popup {
+    bottom: 14px;
+    left: 14px;
+  }
+
+  .cashly-modern.home-page .demo-popup__launcher {
+    min-height: 54px;
+    padding: 0.78rem 0.95rem;
+  }
+
+  .cashly-modern.home-page .demo-popup__launcher-copy {
+    font-size: 0.9rem;
+  }
+
+  .cashly-modern.home-page .demo-popup__panel {
+    border-radius: 22px;
+    max-width: calc(100vw - 28px);
+    padding: 1rem;
+    width: calc(100vw - 28px);
+  }
+
+  .cashly-modern.home-page .demo-popup__calendar-shell,
+  .cashly-modern.home-page .demo-popup__calendar-shell iframe {
+    height: 300px;
+    min-height: 300px;
+  }
+
+  .cashly-modern.home-page .page-section,
+  .cashly-modern.home-page .page-section.pt-0 {
+    padding-bottom: 60px;
+    padding-top: 60px !important;
+  }
+
+  .cashly-modern.home-page .page-section--tight {
+    padding-top: 36px !important;
+  }
+
+  .cashly-modern.home-page .hero-product-stage {
+    min-height: 0;
+  }
+
+  .cashly-modern.home-page .hero-product-stage::before {
+    inset: 6% 2% 10%;
+  }
+
+  .cashly-modern.home-page .hero-product-visual {
+    border-radius: 26px;
+    padding: 0.85rem;
+    width: 100%;
+  }
+
+  .cashly-modern.home-page .hero-product-visual img {
+    border-radius: 18px;
+    top: 8px;
+  }
+
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cashly-modern.home-page .home-hero--toronto .toronto-background-media {
     display: none;
@@ -2096,6 +2926,7 @@
     -webkit-animation: none;
             animation: none;
   }
+
 }
 
 .cashly-modern.home-page .showcase-row + .showcase-row {
@@ -2196,6 +3027,10 @@
   gap: 24px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-bottom: 2rem;
+}
+
+.cashly-modern .stat-highlight-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .cashly-modern .stat-highlight-card {
@@ -3190,9 +4025,13 @@
   padding: 72px 0 32px;
 }
 
-.cashly-modern .site-footer__brand img {
-  filter: none;
-  max-height: 56px;
+.cashly-modern .site-footer__brand {
+  display: inline-flex;
+}
+
+.cashly-modern .site-footer__brand .brand-lockup__image {
+  height: 46px;
+  max-height: 46px;
 }
 
 .cashly-modern .site-footer__copy {
@@ -3898,6 +4737,8 @@
 
 .cashly-modern.contact-page .main-nav {
   background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(27, 36, 54, 0.06);
+  box-shadow: none;
 }
 
 .cashly-modern.contact-page .main-nav .navbar-nav .nav-link {
@@ -3908,6 +4749,14 @@
 .cashly-modern.contact-page .main-nav .navbar-nav .nav-link:focus,
 .cashly-modern.contact-page .main-nav .navbar-nav .nav-item.active .nav-link {
   color: var(--cashly-primary);
+}
+
+.cashly-modern.contact-page .navbar-toggler {
+  border-color: rgba(27, 36, 54, 0.14);
+}
+
+.cashly-modern.contact-page .navbar-toggler span {
+  color: #172033;
 }
 
 .cashly-modern.contact-page .contact-secondary-btn {
