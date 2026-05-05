@@ -44,13 +44,14 @@ FACEBOOK: https://www.facebook.com/themefisher
 
   <!-- CUSTOM CSS -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/cashly-modern.css" rel="stylesheet">
 
 </head>
 
-<body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
+<body class="body-wrapper cashly-modern" data-spy="scroll" data-target=".privacy-nav">
 
 
-<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
+<nav class="navbar main-nav navbar-expand-lg px-3 px-lg-0">
   <div class="container">
     <a class="navbar-brand logo brand-lockup" href="index.html" aria-label="Cashly CRM home">
       <img class="brand-lockup__image" src="images/cashly-crm-logo.png" alt="Cashly CRM logo" />
@@ -68,125 +69,26 @@ FACEBOOK: https://www.facebook.com/themefisher
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            data-toggle="dropdown"
-            aria-expanded="false"
-            >Home <span><i class="ti-angle-down"></i></span></a
-          >
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="index.html">Features</a></li>
-            <li><a class="dropdown-item" href="homepage-2.html">Watch Demo</a></li>
-            <li><a class="dropdown-item" href="homepage-3.html">Testimonials</a></li>
-          </ul>
+      <ul class="navbar-nav ml-auto align-items-lg-center">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
         </li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        <li class="nav-item"><a class="nav-link" href="blog.html">Blogs</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#platform">Platform</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#workflow">Workflow</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
-
-<style>
-  /* Basic nav link style */
-  .navbar-nav .nav-link {
-    position: relative;
-    color: #333;
-    transition: color 0.3s ease;
-    cursor: pointer;
-  }
-
-  /* Animated underline container */
-  .underline {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    background-color: #1e56b0;
-    width: 0;
-    transition: width 0.3s ease;
-    border-radius: 2px;
-  }
-
-  /* Dropdown menu base style */
-  .dropdown-menu {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease;
-    display: block; /* keep block for animation, but will toggle visibility */
-    transform-origin: top center;
-    transform: scaleY(0);
-  }
-
-  /* Show dropdown */
-  .dropdown-menu.show {
-    opacity: 1;
-    visibility: visible;
-    transform: scaleY(1);
-  }
-
-  /* Dropdown items hover */
-  .dropdown-menu .dropdown-item {
-    transition: background-color 0.3s ease, color 0.3s ease;
-    color: #333;
-  }
-
-  .dropdown-menu .dropdown-item:hover {
-    background-color: #1e56b0;
-    color: #fff;
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Add underline element to each nav link
-    const navLinks = document.querySelectorAll(".navbar-nav .nav-link:not(.dropdown-toggle)");
-
-    navLinks.forEach((link) => {
-      // Create underline span and append
-      const underline = document.createElement("span");
-      underline.classList.add("underline");
-      link.appendChild(underline);
-
-      // Mouse enter - expand underline
-      link.addEventListener("mouseenter", () => {
-        underline.style.width = "100%";
-        link.style.color = "#1E56B0";
-      });
-
-      // Mouse leave - collapse underline
-      link.addEventListener("mouseleave", () => {
-        underline.style.width = "0";
-        link.style.color = "#333";
-      });
-    });
-
-    // Dropdown hover animations
-    const dropdowns = document.querySelectorAll(".nav-item.dropdown");
-
-    dropdowns.forEach((dropdown) => {
-      const toggle = dropdown.querySelector(".dropdown-toggle");
-      const menu = dropdown.querySelector(".dropdown-menu");
-
-      // Show dropdown on mouse enter
-      dropdown.addEventListener("mouseenter", () => {
-        menu.classList.add("show");
-        toggle.setAttribute("aria-expanded", "true");
-      });
-
-      // Hide dropdown on mouse leave
-      dropdown.addEventListener("mouseleave", () => {
-        menu.classList.remove("show");
-        toggle.setAttribute("aria-expanded", "false");
-      });
-    });
-  });
-</script>
 
 <!--====================================
 =            Single Article            =

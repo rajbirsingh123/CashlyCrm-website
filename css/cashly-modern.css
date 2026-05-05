@@ -55,6 +55,10 @@
           backdrop-filter: blur(16px);
 }
 
+.cashly-modern .main-nav .container {
+  min-height: 88px;
+}
+
 .cashly-modern .main-nav .navbar-brand {
   align-items: center;
   display: inline-flex;
@@ -69,8 +73,8 @@
 
 .cashly-modern .brand-lockup__image {
   display: block;
-  height: 40px;
-  max-height: 40px;
+  height: 56px;
+  max-height: 56px;
   width: auto;
 }
 
@@ -87,11 +91,11 @@
 .cashly-modern .main-nav .navbar-nav .nav-link {
   color: rgba(19, 35, 58, 0.78);
   font-family: "Instrument Sans", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.12em;
   line-height: 1;
-  padding: 0.95rem 1rem;
+  padding: 1.15rem 1.1rem;
   text-transform: uppercase;
 }
 
@@ -208,12 +212,12 @@
 .cashly-modern .navbar-toggler {
   border: 1px solid rgba(19, 35, 58, 0.1);
   border-radius: 999px;
-  padding: 0.55rem 0.9rem;
+  padding: 0.7rem 1rem;
 }
 
 .cashly-modern .navbar-toggler span {
   color: var(--cashly-text);
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .cashly-modern .btn-main-md {
@@ -2125,6 +2129,22 @@
   color: #172033;
 }
 
+@media (max-width: 991.98px) {
+  .cashly-modern .main-nav .container {
+    min-height: 78px;
+  }
+
+  .cashly-modern .brand-lockup__image {
+    height: 50px;
+    max-height: 50px;
+  }
+
+  .cashly-modern .main-nav .navbar-nav .nav-link {
+    font-size: 13px;
+    padding: 0.9rem 0.8rem;
+  }
+}
+
 .cashly-modern.home-page .home-hero--product-update {
   background:
     radial-gradient(circle at 12% 20%, rgba(235, 242, 255, 0.72), transparent 22%),
@@ -4030,8 +4050,9 @@
 }
 
 .cashly-modern .site-footer__brand .brand-lockup__image {
-  height: 46px;
-  max-height: 46px;
+  height: 58px;
+  filter: none;
+  max-height: 58px;
 }
 
 .cashly-modern .site-footer__copy {
@@ -4733,30 +4754,6 @@
 .cashly-modern.contact-page .contact-hero__lead,
 .cashly-modern.contact-page .contact-map-shell p {
   color: var(--cashly-muted);
-}
-
-.cashly-modern.contact-page .main-nav {
-  background: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid rgba(27, 36, 54, 0.06);
-  box-shadow: none;
-}
-
-.cashly-modern.contact-page .main-nav .navbar-nav .nav-link {
-  color: var(--cashly-text);
-}
-
-.cashly-modern.contact-page .main-nav .navbar-nav .nav-link:hover,
-.cashly-modern.contact-page .main-nav .navbar-nav .nav-link:focus,
-.cashly-modern.contact-page .main-nav .navbar-nav .nav-item.active .nav-link {
-  color: var(--cashly-primary);
-}
-
-.cashly-modern.contact-page .navbar-toggler {
-  border-color: rgba(27, 36, 54, 0.14);
-}
-
-.cashly-modern.contact-page .navbar-toggler span {
-  color: #172033;
 }
 
 .cashly-modern.contact-page .contact-secondary-btn {
