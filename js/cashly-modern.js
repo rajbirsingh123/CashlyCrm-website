@@ -368,6 +368,1162 @@ document.addEventListener("DOMContentLoaded", () => {
     resetHeroMotion();
   }
 
+  const heroParticlesTarget = document.getElementById("particles-js");
+
+  if (heroParticlesTarget && window.particlesJS) {
+    window.particlesJS("particles-js", {
+      particles: {
+        number: {
+          value: 56,
+          density: {
+            enable: true,
+            value_area: 1000
+          }
+        },
+        color: {
+          value: "#5c7ff5"
+        },
+        shape: {
+          type: "circle"
+        },
+        opacity: {
+          value: 0.34,
+          random: false,
+          anim: {
+            enable: true,
+            speed: 1.2,
+            opacity_min: 0.16,
+            sync: false
+          }
+        },
+        size: {
+          value: 4.5,
+          random: true,
+          anim: {
+            enable: false,
+            speed: 4,
+            size_min: 1.5,
+            sync: false
+          }
+        },
+        line_linked: {
+          enable: true,
+          distance: 140,
+          color: "#5c7ff5",
+          opacity: 0.24,
+          width: 1.2
+        },
+        move: {
+          enable: true,
+          speed: 1.8,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "grab"
+          },
+          onclick: {
+            enable: true,
+            mode: "push"
+          },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 140,
+            line_linked: {
+              opacity: 0.22
+            }
+          },
+          push: {
+            particles_nb: 3
+          }
+        }
+      },
+      retina_detect: true
+    });
+  }
+
+  const scarlettModal = document.getElementById("scarlettModal");
+  const scarlettSuccessModal = document.getElementById("scarlettSuccessModal");
+  const integrationCardTriggers = Array.from(document.querySelectorAll("[data-integration-open]"));
+  const scarlettModalCloseTriggers = Array.from(document.querySelectorAll("[data-scarlett-close]:not([data-scarlett-success-close])"));
+  const scarlettConfigureButtons = Array.from(document.querySelectorAll(".scarlett-configure-open"));
+  const scarlettSuccessCloseTriggers = Array.from(document.querySelectorAll("[data-scarlett-success-close]"));
+  const brokerCopilotModal = document.getElementById("brokerCopilotModal");
+  const brokerCopilotTriggers = Array.from(document.querySelectorAll("[data-broker-copilot-open]"));
+  const brokerCopilotCloseTriggers = Array.from(document.querySelectorAll("[data-broker-copilot-close]"));
+  const brokerCopilotPromptButtons = Array.from(document.querySelectorAll("[data-broker-prompt]"));
+  const brokerCopilotComposer = document.getElementById("brokerCopilotComposer");
+  const brokerCopilotInput = document.getElementById("brokerCopilotInput");
+  const brokerCopilotChat = document.getElementById("brokerCopilotChat");
+  const brokerCopilotUserMessage = document.getElementById("brokerCopilotUserMessage");
+  const brokerCopilotUserText = document.getElementById("brokerCopilotUserText");
+  const brokerCopilotAssistantMessage = document.getElementById("brokerCopilotAssistantMessage");
+  const brokerCopilotTyping = document.getElementById("brokerCopilotTyping");
+  const brokerCopilotAssistantLead = document.getElementById("brokerCopilotAssistantLead");
+  const brokerCopilotAssistantBody = document.getElementById("brokerCopilotAssistantBody");
+  const brokerCopilotAssistantFooter = document.getElementById("brokerCopilotAssistantFooter");
+  const opportunityPipelineModal = document.getElementById("opportunityPipelineModal");
+  const opportunityPipelineTriggers = Array.from(document.querySelectorAll("[data-opportunity-pipeline-open]"));
+  const opportunityPipelineCloseTriggers = Array.from(document.querySelectorAll("[data-opportunity-pipeline-close]"));
+  const opportunityPipelineCardLists = opportunityPipelineModal
+    ? Array.from(opportunityPipelineModal.querySelectorAll(".pipeline-column__cards"))
+    : [];
+  const campaignCallingModal = document.getElementById("campaignCallingModal");
+  const campaignCallingTriggers = Array.from(document.querySelectorAll("[data-campaign-calling-open]"));
+  const campaignCallingCloseTriggers = Array.from(document.querySelectorAll("[data-campaign-calling-close]"));
+  const campaignCallingStartButton = document.getElementById("campaignCallingStart");
+  const campaignCallingStartButtonLabel = campaignCallingStartButton
+    ? campaignCallingStartButton.querySelector("span")
+    : null;
+  const campaignCallingStatus = document.getElementById("campaignCallingStatus");
+  const campaignCallingCurrentLead = document.getElementById("campaignCallingCurrentLead");
+  const campaignCallingCurrentMeta = document.getElementById("campaignCallingCurrentMeta");
+  const campaignCallingProgressText = document.getElementById("campaignCallingProgressText");
+  const campaignCallingProgressBar = document.getElementById("campaignCallingProgressBar");
+  const campaignCallingConnectedCount = document.getElementById("campaignCallingConnectedCount");
+  const campaignCallingFollowUpCount = document.getElementById("campaignCallingFollowUpCount");
+  const campaignCallingRemainingCount = document.getElementById("campaignCallingRemainingCount");
+  const campaignCallingDialerMode = document.getElementById("campaignCallingDialerMode");
+  const campaignCallingDialerDisplay = document.getElementById("campaignCallingDialerDisplay");
+  const campaignCallingRows = campaignCallingModal
+    ? Array.from(campaignCallingModal.querySelectorAll(".campaign-row"))
+    : [];
+  const featureInterestModal = document.getElementById("featureInterestModal");
+  const featureInterestTriggers = Array.from(document.querySelectorAll("[data-feature-interest-open]"));
+  const featureInterestCloseTriggers = Array.from(document.querySelectorAll("[data-feature-interest-close]"));
+  const featureInterestModalEyebrow = document.getElementById("featureInterestModalEyebrow");
+  const featureInterestModalHeading = document.getElementById("featureInterestModalHeading");
+  const featureInterestModalLead = document.getElementById("featureInterestModalLead");
+  const featureInterestModalIcon = document.getElementById("featureInterestModalIcon");
+  const featureInterestModalCardTitle = document.getElementById("featureInterestModalCardTitle");
+  const featureInterestModalCardCopy = document.getElementById("featureInterestModalCardCopy");
+  const featureInterestModalQuote = document.getElementById("featureInterestModalQuote");
+  const featureInterestModalCta = document.getElementById("featureInterestModalCta");
+  const scarlettModalIcon = document.getElementById("scarlettModalIcon");
+  const scarlettModalTitle = document.getElementById("scarlettModalTitle");
+  const scarlettModalDescription = document.getElementById("scarlettModalDescription");
+  const scarlettModalStatus = document.getElementById("scarlettModalStatus");
+  const scarlettModalSummaryHeading = document.getElementById("scarlettModalSummaryHeading");
+  const scarlettModalSummaryNoteOne = document.getElementById("scarlettModalSummaryNoteOne");
+  const scarlettModalSummaryNoteTwo = document.getElementById("scarlettModalSummaryNoteTwo");
+  const scarlettConfigureButton = document.getElementById("scarlettConfigureButton");
+  const scarlettSuccessModalTitle = document.getElementById("scarlettSuccessModalTitle");
+  const scarlettSuccessModalMessage = document.getElementById("scarlettSuccessModalMessage");
+  let activeIntegrationKey = "scarlett";
+  const featureInterestModalContent = {
+    dealsense: {
+      eyebrow: "DealSense Preview",
+      heading: "Excited to know more about DealSense ranking?",
+      lead: "Book a live demo with us and we will walk you through the full lender-ranking process in detail, including scoring logic, recommendation confidence, and how brokers use it inside the workflow.",
+      iconClass: "ti-target",
+      cardTitle: "DealSense Ranking",
+      cardCopy: "See how Cashly can surface stronger lender-fit recommendations while keeping the final decision grounded in borrower context, file stage, and operational reality.",
+      quote: "We will cover ranking logic, workflow fit, explainability, and what the end-to-end experience looks like for your team."
+    },
+    docsense: {
+      eyebrow: "DocSense Preview",
+      heading: "Excited to know more about DocSense?",
+      lead: "Book a live demo with us and we will go through the whole document process in detail, from extraction and review to routing, file organization, and how everything stays connected to the active deal.",
+      iconClass: "ti-files",
+      cardTitle: "DocSense",
+      cardCopy: "See how document handling becomes cleaner, faster, and easier to review when extraction, file context, and next actions live inside the same operating system.",
+      quote: "We will cover document intake, metadata review, routing logic, and how teams keep every file tied to the right borrower and opportunity."
+    }
+  };
+  const integrationModalContent = {
+    velocity: {
+      iconClass: "ti-exchange-vertical",
+      title: "Velocity Submission Sync",
+      description: "Connect brokerage submission flow, routing updates, and partner handoff visibility through Velocity.",
+      status: "Available",
+      summaryHeading: "Ready for brokerage setup",
+      summaryNoteOne: "Submission credentials can be mapped organization-wide",
+      summaryNoteTwo: "Routing and workflow updates stay visible inside Cashly",
+      actionLabel: "Connect Velocity",
+      successTitle: "Velocity connected",
+      successMessage: "Congratulations — your organization is connected with Velocity. Submission flow and operating visibility can now stay closer to your Cashly CRM workflow."
+    },
+    scarlett: {
+      iconClass: "ti-link",
+      title: "Scarlett Opportunity Sync",
+      description: "Organization-owned Scarlett credentials for opportunity preview, import, and lender submissions refresh.",
+      status: "Configured",
+      summaryHeading: "Enabled for this organization",
+      summaryNoteOne: "Primary API key stored",
+      summaryNoteTwo: "Uses primary key for submissions",
+      actionLabel: "Configured",
+      successTitle: "Scarlett connected",
+      successMessage: "Congratulations — your organization is connected with Scarlett. You can now push and pull deals directly from Cashly CRM through Scarlett"
+    },
+    boss: {
+      iconClass: "ti-briefcase",
+      title: "BOSS Brokerage Sync",
+      description: "Keep brokerage-side records, operational context, and deal coordination aligned through BOSS connectivity.",
+      status: "Available",
+      summaryHeading: "Connection path available",
+      summaryNoteOne: "Brokerage account mapping can be enabled per organization",
+      summaryNoteTwo: "Operational records stay closer to the active deal workflow",
+      actionLabel: "Connect BOSS",
+      successTitle: "BOSS connected",
+      successMessage: "Congratulations — your organization is connected with BOSS. Brokerage operations and deal coordination can now flow more directly through Cashly CRM."
+    }
+  };
+
+  const applyIntegrationModalContent = (integrationKey) => {
+    const content = integrationModalContent[integrationKey] || integrationModalContent.scarlett;
+    activeIntegrationKey = integrationKey in integrationModalContent ? integrationKey : "scarlett";
+
+    if (scarlettModalIcon) {
+      scarlettModalIcon.className = content.iconClass;
+    }
+
+    if (scarlettModalTitle) {
+      scarlettModalTitle.textContent = content.title;
+    }
+
+    if (scarlettModalDescription) {
+      scarlettModalDescription.textContent = content.description;
+    }
+
+    if (scarlettModalStatus) {
+      scarlettModalStatus.textContent = content.status;
+    }
+
+    if (scarlettModalSummaryHeading) {
+      scarlettModalSummaryHeading.textContent = content.summaryHeading;
+    }
+
+    if (scarlettModalSummaryNoteOne) {
+      scarlettModalSummaryNoteOne.textContent = content.summaryNoteOne;
+    }
+
+    if (scarlettModalSummaryNoteTwo) {
+      scarlettModalSummaryNoteTwo.textContent = content.summaryNoteTwo;
+    }
+
+    if (scarlettConfigureButton) {
+      scarlettConfigureButton.textContent = content.actionLabel;
+    }
+
+    if (scarlettSuccessModalTitle) {
+      scarlettSuccessModalTitle.textContent = content.successTitle;
+    }
+
+    if (scarlettSuccessModalMessage) {
+      scarlettSuccessModalMessage.textContent = content.successMessage;
+    }
+  };
+
+  const toggleModal = (modal, isOpen) => {
+    if (!modal) {
+      return;
+    }
+
+    modal.classList.toggle("is-open", isOpen);
+    modal.setAttribute("aria-hidden", String(!isOpen));
+
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  };
+
+  const applyFeatureInterestModalContent = (featureKey) => {
+    const content = featureInterestModalContent[featureKey] || featureInterestModalContent.dealsense;
+
+    if (featureInterestModalEyebrow) {
+      featureInterestModalEyebrow.textContent = content.eyebrow;
+    }
+
+    if (featureInterestModalHeading) {
+      featureInterestModalHeading.textContent = content.heading;
+    }
+
+    if (featureInterestModalLead) {
+      featureInterestModalLead.textContent = content.lead;
+    }
+
+    if (featureInterestModalIcon) {
+      featureInterestModalIcon.innerHTML = `<i class="${content.iconClass}" aria-hidden="true"></i>`;
+    }
+
+    if (featureInterestModalCardTitle) {
+      featureInterestModalCardTitle.textContent = content.cardTitle;
+    }
+
+    if (featureInterestModalCardCopy) {
+      featureInterestModalCardCopy.textContent = content.cardCopy;
+    }
+
+    if (featureInterestModalQuote) {
+      featureInterestModalQuote.textContent = content.quote;
+    }
+
+    if (featureInterestModalCta) {
+      featureInterestModalCta.href = googleCalendarBookingUrl;
+    }
+  };
+
+  let activeBrokerCopilotScenarioKey = "follow_up";
+  let brokerCopilotTimers = [];
+  const brokerCopilotScenarios = {
+    call_summary: {
+      prompt: "Summarize today's calls and what needs attention before the day ends.",
+      lead: "Here's a concise call summary for today:",
+      body: "27 total calls, 9 live conversations, 6 follow-ups due before 4 PM, and 3 high-intent borrowers waiting on document review.",
+      footer: "I can turn this into a handoff note, a broker standup summary, or task list next."
+    },
+    follow_up: {
+      prompt: "Draft a short follow-up text for leads that have gone cold.",
+      lead: "Here's a concise follow-up text template for cold leads:",
+      body: "\"Hi {{contact.first_name}}, just checking in to see if you still need help with your mortgage or line of credit. Feel free to reach out anytime. I'm here to assist you. - {{user.first_name}}\"",
+      footer: "Let me know if you want it personalized or adjusted."
+    },
+    deal_snapshot: {
+      prompt: "Create a quick snapshot for the Wilson refinance deal before broker review.",
+      lead: "Here's a quick deal snapshot you can share with the broker:",
+      body: "Refinance file is in review, income docs are complete, property details are verified, and lender shortlist is ready pending one final liability clarification.",
+      footer: "I can also format this as a borrower update or internal Slack summary."
+    },
+    lender_blockers: {
+      prompt: "Highlight lender blockers on files that are close to submission.",
+      lead: "Current lender blockers are easy to summarize:",
+      body: "Two files need updated employment letters, one deal is missing signed disclosure pages, and one lender path is paused because the product fit changed after new debt was added.",
+      footer: "If you want, I can group these by lender, stage, or assignee."
+    },
+    urgent_tasks: {
+      prompt: "List urgent tasks for brokers across active opportunities.",
+      lead: "Here are the priority tasks to action first:",
+      body: "Return three same-day borrower callbacks, review two lender-match recommendations, approve one submission package, and clear one Ops question on a pending accepted borrower file.",
+      footer: "I can convert this into a broker-by-broker checklist in one click."
+    }
+  };
+
+  const clearBrokerCopilotTimers = () => {
+    brokerCopilotTimers.forEach((timerId) => {
+      window.clearTimeout(timerId);
+    });
+    brokerCopilotTimers = [];
+  };
+
+  const syncBrokerCopilotScroll = () => {
+    if (!brokerCopilotChat) {
+      return;
+    }
+
+    brokerCopilotChat.scrollTop = brokerCopilotChat.scrollHeight;
+  };
+
+  const setBrokerCopilotChipState = (scenarioKey) => {
+    brokerCopilotPromptButtons.forEach((button) => {
+      button.classList.toggle("is-active", button.dataset.brokerPrompt === scenarioKey);
+    });
+  };
+
+  const getBrokerCopilotScenarioKeyFromPrompt = (promptText) => {
+    const normalizedPrompt = promptText.trim().toLowerCase();
+
+    if (normalizedPrompt.includes("call")) {
+      return "call_summary";
+    }
+
+    if (normalizedPrompt.includes("follow") || normalizedPrompt.includes("cold") || normalizedPrompt.includes("text")) {
+      return "follow_up";
+    }
+
+    if (normalizedPrompt.includes("blocker") || normalizedPrompt.includes("lender")) {
+      return "lender_blockers";
+    }
+
+    if (normalizedPrompt.includes("task") || normalizedPrompt.includes("urgent") || normalizedPrompt.includes("priority")) {
+      return "urgent_tasks";
+    }
+
+    if (normalizedPrompt.includes("snapshot") || normalizedPrompt.includes("deal") || normalizedPrompt.includes("summary")) {
+      return "deal_snapshot";
+    }
+
+    return "follow_up";
+  };
+
+  const renderBrokerCopilotScenario = (scenarioKey, customPromptText) => {
+    const resolvedScenarioKey = Object.prototype.hasOwnProperty.call(brokerCopilotScenarios, scenarioKey)
+      ? scenarioKey
+      : "follow_up";
+    const scenario = brokerCopilotScenarios[resolvedScenarioKey];
+
+    activeBrokerCopilotScenarioKey = resolvedScenarioKey;
+    setBrokerCopilotChipState(resolvedScenarioKey);
+    clearBrokerCopilotTimers();
+
+    if (brokerCopilotUserText) {
+      brokerCopilotUserText.textContent = customPromptText || scenario.prompt;
+    }
+
+    if (brokerCopilotAssistantLead) {
+      brokerCopilotAssistantLead.textContent = scenario.lead;
+    }
+
+    if (brokerCopilotAssistantBody) {
+      brokerCopilotAssistantBody.textContent = scenario.body;
+    }
+
+    if (brokerCopilotAssistantFooter) {
+      brokerCopilotAssistantFooter.textContent = scenario.footer;
+    }
+
+    if (brokerCopilotUserMessage) {
+      brokerCopilotUserMessage.classList.remove("is-visible");
+    }
+
+    if (brokerCopilotAssistantMessage) {
+      brokerCopilotAssistantMessage.classList.remove("is-visible");
+    }
+
+    if (brokerCopilotTyping) {
+      brokerCopilotTyping.classList.remove("is-visible");
+    }
+
+    syncBrokerCopilotScroll();
+
+    if (prefersReducedMotion.matches) {
+      if (brokerCopilotUserMessage) {
+        brokerCopilotUserMessage.classList.add("is-visible");
+      }
+
+      if (brokerCopilotAssistantMessage) {
+        brokerCopilotAssistantMessage.classList.add("is-visible");
+      }
+
+      syncBrokerCopilotScroll();
+      return;
+    }
+
+    brokerCopilotTimers.push(window.setTimeout(() => {
+      if (brokerCopilotUserMessage) {
+        brokerCopilotUserMessage.classList.add("is-visible");
+      }
+      syncBrokerCopilotScroll();
+    }, 80));
+
+    brokerCopilotTimers.push(window.setTimeout(() => {
+      if (brokerCopilotTyping) {
+        brokerCopilotTyping.classList.add("is-visible");
+      }
+      syncBrokerCopilotScroll();
+    }, 320));
+
+    brokerCopilotTimers.push(window.setTimeout(() => {
+      if (brokerCopilotTyping) {
+        brokerCopilotTyping.classList.remove("is-visible");
+      }
+
+      if (brokerCopilotAssistantMessage) {
+        brokerCopilotAssistantMessage.classList.add("is-visible");
+      }
+
+      syncBrokerCopilotScroll();
+    }, 1180));
+  };
+
+  const openBrokerCopilotModal = (scenarioKey = "follow_up", customPromptText = "") => {
+    closeFeatureInterestModal();
+    closeCampaignCallingModal();
+    toggleModal(opportunityPipelineModal, false);
+    toggleModal(brokerCopilotModal, true);
+    window.requestAnimationFrame(() => {
+      renderBrokerCopilotScenario(scenarioKey, customPromptText);
+    });
+
+    if (brokerCopilotInput) {
+      window.setTimeout(() => {
+        brokerCopilotInput.focus();
+      }, prefersReducedMotion.matches ? 0 : 220);
+    }
+  };
+
+  const closeBrokerCopilotModal = () => {
+    clearBrokerCopilotTimers();
+    toggleModal(brokerCopilotModal, false);
+  };
+
+  const openFeatureInterestModal = (featureKey = "dealsense") => {
+    closeBrokerCopilotModal();
+    closeCampaignCallingModal();
+    toggleModal(opportunityPipelineModal, false);
+    applyFeatureInterestModalContent(featureKey);
+    toggleModal(featureInterestModal, true);
+  };
+
+  function closeFeatureInterestModal() {
+    toggleModal(featureInterestModal, false);
+  }
+
+  let campaignCallingIntervalId = null;
+  let campaignCallingCompletionTimeoutId = null;
+  let campaignCallingIndex = -1;
+  let campaignCallingIsRunning = false;
+  let campaignCallingIsFinished = false;
+
+  const totalCampaignCallingRows = campaignCallingRows.length;
+
+  const clearCampaignCallingTimers = () => {
+    if (campaignCallingIntervalId) {
+      window.clearInterval(campaignCallingIntervalId);
+      campaignCallingIntervalId = null;
+    }
+
+    if (campaignCallingCompletionTimeoutId) {
+      window.clearTimeout(campaignCallingCompletionTimeoutId);
+      campaignCallingCompletionTimeoutId = null;
+    }
+  };
+
+  const setCampaignCallingStartButtonLabel = (label) => {
+    if (campaignCallingStartButtonLabel) {
+      campaignCallingStartButtonLabel.textContent = label;
+    }
+  };
+
+  const setCampaignCallingStatusAppearance = (label, state = "") => {
+    if (!campaignCallingStatus) {
+      return;
+    }
+
+    campaignCallingStatus.textContent = label;
+    campaignCallingStatus.classList.toggle("is-live", state === "live");
+    campaignCallingStatus.classList.toggle("is-complete", state === "complete");
+  };
+
+  const setCampaignCallingOutcomeBadge = (badge, outcome) => {
+    if (!badge) {
+      return;
+    }
+
+    badge.textContent = outcome;
+    badge.classList.remove(
+      "campaign-outcome--queued",
+      "campaign-outcome--connected",
+      "campaign-outcome--follow-up",
+      "campaign-outcome--voicemail"
+    );
+
+    if (outcome === "Connected") {
+      badge.classList.add("campaign-outcome--connected");
+      return;
+    }
+
+    if (outcome === "Follow-up") {
+      badge.classList.add("campaign-outcome--follow-up");
+      return;
+    }
+
+    if (outcome === "Voicemail") {
+      badge.classList.add("campaign-outcome--voicemail");
+      return;
+    }
+
+    badge.classList.add("campaign-outcome--queued");
+  };
+
+  const updateCampaignCallingSummary = () => {
+    const processedRows = campaignCallingRows.filter((row) => row.classList.contains("is-complete"));
+    const connectedCount = processedRows.filter((row) => row.dataset.campaignOutcome === "Connected").length;
+    const followUpCount = processedRows.filter((row) => row.dataset.campaignOutcome !== "Connected").length;
+    const processedCount = processedRows.length;
+    const remainingCount = Math.max(totalCampaignCallingRows - processedCount, 0);
+    const progressPercent = totalCampaignCallingRows > 0
+      ? (processedCount / totalCampaignCallingRows) * 100
+      : 0;
+
+    if (campaignCallingConnectedCount) {
+      campaignCallingConnectedCount.textContent = String(connectedCount);
+    }
+
+    if (campaignCallingFollowUpCount) {
+      campaignCallingFollowUpCount.textContent = String(followUpCount);
+    }
+
+    if (campaignCallingRemainingCount) {
+      campaignCallingRemainingCount.textContent = String(remainingCount);
+    }
+
+    if (campaignCallingProgressText) {
+      campaignCallingProgressText.textContent = `${processedCount} / ${totalCampaignCallingRows}`;
+    }
+
+    if (campaignCallingProgressBar) {
+      campaignCallingProgressBar.style.width = `${progressPercent}%`;
+    }
+  };
+
+  const resetCampaignCallingDemo = () => {
+    clearCampaignCallingTimers();
+    campaignCallingIndex = -1;
+    campaignCallingIsRunning = false;
+    campaignCallingIsFinished = false;
+
+    if (campaignCallingStartButton) {
+      campaignCallingStartButton.disabled = false;
+    }
+
+    setCampaignCallingStartButtonLabel("Start");
+    setCampaignCallingStatusAppearance("Ready");
+
+    if (campaignCallingCurrentLead) {
+      campaignCallingCurrentLead.textContent = "No active contact";
+    }
+
+    if (campaignCallingCurrentMeta) {
+      campaignCallingCurrentMeta.textContent = "Click start to walk through the outreach queue with fake lead data.";
+    }
+
+    if (campaignCallingDialerMode) {
+      campaignCallingDialerMode.textContent = "Idle";
+    }
+
+    if (campaignCallingDialerDisplay) {
+      campaignCallingDialerDisplay.textContent = "Enter digits";
+      campaignCallingDialerDisplay.classList.remove("is-live");
+    }
+
+    campaignCallingRows.forEach((row) => {
+      row.classList.remove("is-active", "is-complete");
+
+      const lastActivity = row.querySelector("[data-campaign-last-activity]");
+      const callCount = row.querySelector("[data-campaign-call-count]");
+      const statusBadge = row.querySelector("[data-campaign-status-label]");
+
+      if (lastActivity) {
+        lastActivity.textContent = "Queued";
+      }
+
+      if (callCount) {
+        callCount.textContent = "0";
+      }
+
+      setCampaignCallingOutcomeBadge(statusBadge, "Queued");
+    });
+
+    updateCampaignCallingSummary();
+  };
+
+  const finishCampaignCallingDemo = () => {
+    clearCampaignCallingTimers();
+    campaignCallingIsRunning = false;
+    campaignCallingIsFinished = true;
+
+    campaignCallingRows.forEach((row) => {
+      row.classList.remove("is-active");
+    });
+
+    setCampaignCallingStatusAppearance("Completed", "complete");
+
+    if (campaignCallingCurrentLead) {
+      campaignCallingCurrentLead.textContent = "Campaign complete";
+    }
+
+    if (campaignCallingCurrentMeta) {
+      campaignCallingCurrentMeta.textContent = `${totalCampaignCallingRows} demo leads processed across the outreach queue.`;
+    }
+
+    if (campaignCallingDialerMode) {
+      campaignCallingDialerMode.textContent = "Done";
+    }
+
+    if (campaignCallingDialerDisplay) {
+      campaignCallingDialerDisplay.textContent = "Campaign complete";
+      campaignCallingDialerDisplay.classList.remove("is-live");
+    }
+
+    if (campaignCallingStartButton) {
+      campaignCallingStartButton.disabled = false;
+    }
+
+    setCampaignCallingStartButtonLabel("Restart Demo");
+  };
+
+  const processNextCampaignCallingLead = () => {
+    const nextIndex = campaignCallingIndex + 1;
+
+    if (nextIndex >= totalCampaignCallingRows) {
+      finishCampaignCallingDemo();
+      return;
+    }
+
+    campaignCallingIndex = nextIndex;
+    campaignCallingRows.forEach((row) => {
+      row.classList.remove("is-active");
+    });
+
+    const activeRow = campaignCallingRows[campaignCallingIndex];
+
+    if (!activeRow) {
+      finishCampaignCallingDemo();
+      return;
+    }
+
+    const leadName = activeRow.querySelector(".campaign-row__cell--lead strong")?.textContent || `Lead ${campaignCallingIndex + 1}`;
+    const leadPhone = activeRow.dataset.campaignPhone || "";
+    const leadOutcome = activeRow.dataset.campaignOutcome || "Connected";
+    const leadNote = activeRow.dataset.campaignNote || "";
+    const lastActivity = activeRow.querySelector("[data-campaign-last-activity]");
+    const callCount = activeRow.querySelector("[data-campaign-call-count]");
+    const statusBadge = activeRow.querySelector("[data-campaign-status-label]");
+
+    activeRow.classList.add("is-active", "is-complete");
+
+    if (campaignCallingCurrentLead) {
+      campaignCallingCurrentLead.textContent = leadName;
+    }
+
+    if (campaignCallingCurrentMeta) {
+      campaignCallingCurrentMeta.textContent = `${leadPhone} • ${leadNote}`;
+    }
+
+    if (campaignCallingDialerMode) {
+      campaignCallingDialerMode.textContent = "Live";
+    }
+
+    if (campaignCallingDialerDisplay) {
+      campaignCallingDialerDisplay.textContent = leadPhone;
+      campaignCallingDialerDisplay.classList.add("is-live");
+    }
+
+    if (lastActivity) {
+      lastActivity.textContent = "Just now";
+    }
+
+    if (callCount) {
+      callCount.textContent = "1";
+    }
+
+    setCampaignCallingOutcomeBadge(statusBadge, leadOutcome);
+    setCampaignCallingStatusAppearance("Running", "live");
+    updateCampaignCallingSummary();
+
+    activeRow.scrollIntoView({
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+      block: "nearest",
+      inline: "nearest"
+    });
+
+    if (campaignCallingIndex === totalCampaignCallingRows - 1) {
+      clearCampaignCallingTimers();
+      campaignCallingCompletionTimeoutId = window.setTimeout(() => {
+        finishCampaignCallingDemo();
+      }, prefersReducedMotion.matches ? 80 : 720);
+    }
+  };
+
+  const startCampaignCallingDemo = () => {
+    if (campaignCallingIsRunning || totalCampaignCallingRows === 0) {
+      return;
+    }
+
+    if (campaignCallingIsFinished) {
+      resetCampaignCallingDemo();
+    }
+
+    campaignCallingIsRunning = true;
+    setCampaignCallingStatusAppearance("Running", "live");
+
+    if (campaignCallingStartButton) {
+      campaignCallingStartButton.disabled = true;
+    }
+
+    setCampaignCallingStartButtonLabel("Running...");
+    processNextCampaignCallingLead();
+
+    if (totalCampaignCallingRows > 1) {
+      campaignCallingIntervalId = window.setInterval(() => {
+        processNextCampaignCallingLead();
+      }, prefersReducedMotion.matches ? 260 : 980);
+    }
+  };
+
+  const openCampaignCallingModal = () => {
+    closeBrokerCopilotModal();
+    closeFeatureInterestModal();
+    toggleModal(opportunityPipelineModal, false);
+    resetCampaignCallingDemo();
+    toggleModal(campaignCallingModal, true);
+
+    if (campaignCallingStartButton) {
+      window.setTimeout(() => {
+        campaignCallingStartButton.focus();
+      }, prefersReducedMotion.matches ? 0 : 180);
+    }
+  };
+
+  function closeCampaignCallingModal() {
+    resetCampaignCallingDemo();
+    toggleModal(campaignCallingModal, false);
+  }
+
+  let activeDraggedPipelineCard = null;
+  let pipelineDragInitialized = false;
+  const pipelineDropPlaceholder = document.createElement("div");
+  pipelineDropPlaceholder.className = "pipeline-deal-card pipeline-deal-card--placeholder";
+
+  const formatPipelineCurrency = (value) => {
+    if (value >= 1000000) {
+      return `$${(value / 1000000).toFixed(1)}M`;
+    }
+
+    if (value >= 1000) {
+      return `$${Math.round(value / 1000)}K`;
+    }
+
+    return `$${value}`;
+  };
+
+  const updatePipelineColumnSummaries = () => {
+    opportunityPipelineCardLists.forEach((list) => {
+      const column = list.closest(".pipeline-column");
+
+      if (!column) {
+        return;
+      }
+
+      const deals = Array.from(
+        list.querySelectorAll(".pipeline-deal-card:not(.pipeline-deal-card--placeholder)")
+      );
+      const countElement = column.querySelector(".pipeline-column__header p");
+      const totalElement = column.querySelector(".pipeline-column__header > span");
+      const totalValue = deals.reduce((sum, card) => {
+        const cardValue = Number.parseInt(card.dataset.pipelineValue || "0", 10);
+        return sum + (Number.isFinite(cardValue) ? cardValue : 0);
+      }, 0);
+
+      if (countElement) {
+        countElement.textContent = `${deals.length} ${deals.length === 1 ? "deal" : "deals"}`;
+      }
+
+      if (totalElement) {
+        totalElement.textContent = formatPipelineCurrency(totalValue);
+      }
+    });
+  };
+
+  const getPipelineInsertionTarget = (list, clientY) => {
+    const cards = Array.from(
+      list.querySelectorAll(".pipeline-deal-card:not(.is-dragging):not(.pipeline-deal-card--placeholder)")
+    );
+
+    return cards.reduce((closest, card) => {
+      const box = card.getBoundingClientRect();
+      const offset = clientY - box.top - box.height / 2;
+
+      if (offset < 0 && offset > closest.offset) {
+        return { offset, element: card };
+      }
+
+      return closest;
+    }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
+  };
+
+  const clearPipelineDropTargets = () => {
+    opportunityPipelineCardLists.forEach((list) => {
+      list.classList.remove("is-drop-target");
+    });
+  };
+
+  const removePipelinePlaceholder = () => {
+    if (pipelineDropPlaceholder.parentNode) {
+      pipelineDropPlaceholder.parentNode.removeChild(pipelineDropPlaceholder);
+    }
+  };
+
+  const bindPipelineCardDragEvents = (card) => {
+    card.draggable = true;
+    card.setAttribute("aria-grabbed", "false");
+
+    card.addEventListener("dragstart", (event) => {
+      activeDraggedPipelineCard = card;
+      card.classList.add("is-dragging");
+      card.setAttribute("aria-grabbed", "true");
+
+      if (event.dataTransfer) {
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData("text/plain", card.querySelector("strong")?.textContent || "deal");
+      }
+
+      window.setTimeout(() => {
+        const parentList = card.parentNode;
+
+        if (parentList && !pipelineDropPlaceholder.parentNode) {
+          parentList.insertBefore(pipelineDropPlaceholder, card.nextSibling);
+        }
+      }, 0);
+    });
+
+    card.addEventListener("dragend", () => {
+      card.classList.remove("is-dragging");
+      card.setAttribute("aria-grabbed", "false");
+      clearPipelineDropTargets();
+      removePipelinePlaceholder();
+      activeDraggedPipelineCard = null;
+      updatePipelineColumnSummaries();
+    });
+  };
+
+  const initializeOpportunityPipelineDragAndDrop = () => {
+    if (pipelineDragInitialized || opportunityPipelineCardLists.length === 0) {
+      updatePipelineColumnSummaries();
+      return;
+    }
+
+    opportunityPipelineCardLists.forEach((list) => {
+      list.querySelectorAll(".pipeline-deal-card").forEach(bindPipelineCardDragEvents);
+
+      list.addEventListener("dragover", (event) => {
+        if (!activeDraggedPipelineCard) {
+          return;
+        }
+
+        event.preventDefault();
+        list.classList.add("is-drop-target");
+
+        const targetCard = getPipelineInsertionTarget(list, event.clientY);
+
+        if (targetCard) {
+          list.insertBefore(pipelineDropPlaceholder, targetCard);
+        } else {
+          list.appendChild(pipelineDropPlaceholder);
+        }
+      });
+
+      list.addEventListener("dragenter", (event) => {
+        if (!activeDraggedPipelineCard) {
+          return;
+        }
+
+        event.preventDefault();
+        list.classList.add("is-drop-target");
+      });
+
+      list.addEventListener("dragleave", (event) => {
+        if (event.currentTarget.contains(event.relatedTarget)) {
+          return;
+        }
+
+        list.classList.remove("is-drop-target");
+      });
+
+      list.addEventListener("drop", (event) => {
+        if (!activeDraggedPipelineCard) {
+          return;
+        }
+
+        event.preventDefault();
+
+        if (pipelineDropPlaceholder.parentNode === list) {
+          list.insertBefore(activeDraggedPipelineCard, pipelineDropPlaceholder);
+        } else {
+          list.appendChild(activeDraggedPipelineCard);
+        }
+
+        clearPipelineDropTargets();
+        removePipelinePlaceholder();
+        updatePipelineColumnSummaries();
+      });
+    });
+
+    pipelineDragInitialized = true;
+    updatePipelineColumnSummaries();
+  };
+
+  const openOpportunityPipelineModal = () => {
+    closeBrokerCopilotModal();
+    closeCampaignCallingModal();
+    closeFeatureInterestModal();
+    initializeOpportunityPipelineDragAndDrop();
+    toggleModal(opportunityPipelineModal, true);
+  };
+
+  const closeOpportunityPipelineModal = () => {
+    toggleModal(opportunityPipelineModal, false);
+  };
+
+  integrationCardTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      applyIntegrationModalContent(trigger.dataset.integrationOpen || "scarlett");
+      toggleModal(scarlettModal, true);
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        applyIntegrationModalContent(trigger.dataset.integrationOpen || "scarlett");
+        toggleModal(scarlettModal, true);
+      }
+    });
+  });
+
+  scarlettConfigureButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      applyIntegrationModalContent(activeIntegrationKey);
+      toggleModal(scarlettModal, false);
+      toggleModal(scarlettSuccessModal, true);
+    });
+  });
+
+  brokerCopilotTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      openBrokerCopilotModal("follow_up");
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openBrokerCopilotModal("follow_up");
+      }
+    });
+  });
+
+  brokerCopilotCloseTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeBrokerCopilotModal();
+    });
+  });
+
+  opportunityPipelineTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      openOpportunityPipelineModal();
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openOpportunityPipelineModal();
+      }
+    });
+  });
+
+  opportunityPipelineCloseTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeOpportunityPipelineModal();
+    });
+  });
+
+  campaignCallingTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      openCampaignCallingModal();
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openCampaignCallingModal();
+      }
+    });
+  });
+
+  campaignCallingCloseTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeCampaignCallingModal();
+    });
+  });
+
+  featureInterestTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      openFeatureInterestModal(trigger.dataset.featureInterestOpen || "dealsense");
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openFeatureInterestModal(trigger.dataset.featureInterestOpen || "dealsense");
+      }
+    });
+  });
+
+  featureInterestCloseTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeFeatureInterestModal();
+    });
+  });
+
+  if (campaignCallingStartButton) {
+    campaignCallingStartButton.addEventListener("click", () => {
+      startCampaignCallingDemo();
+    });
+  }
+
+  brokerCopilotPromptButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const scenarioKey = button.dataset.brokerPrompt || "follow_up";
+      renderBrokerCopilotScenario(scenarioKey);
+    });
+  });
+
+  if (brokerCopilotComposer) {
+    brokerCopilotComposer.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!brokerCopilotInput) {
+        return;
+      }
+
+      const promptText = brokerCopilotInput.value.trim();
+
+      if (!promptText) {
+        brokerCopilotInput.focus();
+        return;
+      }
+
+      renderBrokerCopilotScenario(getBrokerCopilotScenarioKeyFromPrompt(promptText), promptText);
+      brokerCopilotInput.value = "";
+    });
+  }
+
+  scarlettModalCloseTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      toggleModal(scarlettModal, false);
+    });
+  });
+
+  scarlettSuccessCloseTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      toggleModal(scarlettSuccessModal, false);
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeBrokerCopilotModal();
+      closeOpportunityPipelineModal();
+      closeCampaignCallingModal();
+      closeFeatureInterestModal();
+      toggleModal(scarlettModal, false);
+      toggleModal(scarlettSuccessModal, false);
+    }
+  });
+
   const calculatorValueNextButton = document.getElementById("calculatorValueNextButton");
   const calculatorAmountRange = document.getElementById("calculator-amount-range");
   const calculatorOwnPropertyOptions = Array.from(document.querySelectorAll("input[name=\"own_property\"]"));
