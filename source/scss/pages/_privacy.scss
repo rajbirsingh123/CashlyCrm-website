@@ -45,14 +45,25 @@
 		@extend .shadow;
 
 		.policy-item {
-			padding-bottom: 40px;
+			padding-bottom: 0;
 
 			.title {
 				margin-bottom: 20px;
 
+				h2,
 				h3 {
 					border-bottom: 1px solid $border-color;
 					padding-bottom: 15px;
+					margin-bottom: 0;
+				}
+
+				.policy-kicker {
+					color: $primary-color;
+					font-size: 13px;
+					font-weight: bold;
+					letter-spacing: 0.08em;
+					margin-bottom: 12px;
+					text-transform: uppercase;
 				}
 			}
 
@@ -61,6 +72,75 @@
 					margin-bottom: 20px;
 				}
 			}
+		}
+
+		.legal-document {
+			color: $text-color;
+
+			&__updated {
+				color: $title-color;
+				font-weight: 600;
+				margin-bottom: 24px;
+			}
+
+			&__note {
+				background: #f7f9fc;
+				border-left: 4px solid $primary-color;
+				border-radius: 10px;
+				margin: 24px 0 32px;
+				padding: 18px 20px;
+
+				p {
+					margin-bottom: 0;
+				}
+			}
+
+			h2,
+			h3,
+			h4 {
+				color: $title-color;
+				line-height: 1.35;
+			}
+
+			h2 {
+				border-top: 1px solid $border-color;
+				font-size: 30px;
+				margin-top: 48px;
+				padding-top: 24px;
+			}
+
+			h3 {
+				font-size: 24px;
+				margin-top: 32px;
+			}
+
+			h4 {
+				font-size: 18px;
+				margin-top: 28px;
+			}
+
+			ul {
+				margin-bottom: 24px;
+				padding-left: 22px;
+
+				li {
+					margin-bottom: 10px;
+				}
+
+				ul {
+					margin-top: 12px;
+					margin-bottom: 0;
+				}
+			}
+
+			a {
+				color: $primary-color;
+				text-decoration: underline;
+			}
+		}
+
+		@include mobile {
+			padding: 32px 24px;
 		}
 	}
 }

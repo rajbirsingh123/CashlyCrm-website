@@ -28,7 +28,6 @@
   });
 
   $(document).ready(function() {
-
     // navbarDropdown
     if ($(window).width() < 992) {
       $('.main-nav .dropdown-toggle').on('click', function (event) {
