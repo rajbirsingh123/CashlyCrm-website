@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const calculatorLeadTurnstileContainer = document.getElementById("calculatorLeadTurnstile");
   const calculatorResultModal = document.getElementById("calculatorResultModal");
   const calculatorResultDate = document.getElementById("calculator-result-date");
+  const pricingCalculators = Array.from(document.querySelectorAll("[data-pricing-calculator]"));
   const defaultCalculatorLeadButtonText = calculatorLeadSubmitButton ? calculatorLeadSubmitButton.textContent.trim() : "Get Your Rates";
   const calculatorModalHash = "#borrowerCalculatorModal";
   let calculatorLeadTurnstileWidgetId = null;
@@ -128,104 +129,317 @@ document.addEventListener("DOMContentLoaded", () => {
   const isHomePage = document.body.classList.contains("home-page");
   const demoPopupWidget = document.getElementById("demoPopupWidget");
   const demoPopupLauncher = document.getElementById("demoPopupLauncher");
+  const demoPopupBackdrop = document.getElementById("demoPopupBackdrop");
   const demoPopupPanel = document.getElementById("demoPopupPanel");
   const demoPopupClose = document.getElementById("demoPopupClose");
-  const demoPopupCalendarFrame = document.getElementById("demoPopupCalendarFrame");
-  const demoPopupCalendarLink = document.getElementById("demoPopupCalendarLink");
+  const demoPopupOpenTriggers = Array.from(document.querySelectorAll("[data-demo-popup-open]"));
+  const demoBookingForm = document.getElementById("demoBookingForm");
+  const demoBookingName = document.getElementById("demoBookingName");
+  const demoBookingDate = document.getElementById("demoBookingDate");
+  const demoBookingTime = document.getElementById("demoBookingTime");
+  const demoBookingTimezone = document.getElementById("demoBookingTimezone");
+  const demoBookingSlotLabel = document.getElementById("demoBookingSlotLabel");
+  const demoBookingMessage = document.getElementById("demoBookingMessage");
+  const demoBookingSubmitButton = document.getElementById("demoBookingSubmitButton");
+  const defaultDemoBookingButtonText = demoBookingSubmitButton
+    ? demoBookingSubmitButton.textContent.trim()
+    : "Schedule Appointment";
+  const demoBookingTimeSlots = [
+    "09:00",
+    "09:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "11:30",
+    "12:00",
+    "12:30",
+    "13:00",
+    "13:30",
+    "14:00",
+    "14:30",
+    "15:00",
+    "15:30",
+    "16:00",
+    "16:30",
+    "17:00"
+  ];
+
+  const formatLocalDateInputValue = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const getNextBusinessDateValue = () => {
+    const nextBusinessDate = new Date();
+    nextBusinessDate.setHours(0, 0, 0, 0);
+
+    do {
+      nextBusinessDate.setDate(nextBusinessDate.getDate() + 1);
+    } while (nextBusinessDate.getDay() === 0 || nextBusinessDate.getDay() === 6);
+
+    return formatLocalDateInputValue(nextBusinessDate);
+  };
+
+  const formatDemoTimeLabel = (timeValue) => {
+    if (!timeValue) {
+      return "";
+    }
+
+    const [hoursValue, minutesValue] = timeValue.split(":");
+    const hours = Number(hoursValue);
+    const minutes = Number(minutesValue);
+
+    if (Number.isNaN(hours) || Number.isNaN(minutes)) {
+      return timeValue;
+    }
+
+    const period = hours >= 12 ? "PM" : "AM";
+    const normalizedHours = hours % 12 || 12;
+    const normalizedMinutes = String(minutes).padStart(2, "0");
+
+    return `${normalizedHours}:${normalizedMinutes} ${period}`;
+  };
+
+  const formatDemoDateLabel = (dateValue) => {
+    if (!dateValue) {
+      return "";
+    }
+
+    const [yearValue, monthValue, dayValue] = dateValue.split("-").map((value) => Number(value));
+
+    if (!yearValue || !monthValue || !dayValue) {
+      return dateValue;
+    }
+
+    return new Intl.DateTimeFormat(undefined, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    }).format(new Date(yearValue, monthValue - 1, dayValue));
+  };
+
+  const populateDemoBookingTimeOptions = () => {
+    if (!demoBookingTime) {
+      return;
+    }
+
+    const currentValue = demoBookingTime.value;
+
+    demoBookingTime.innerHTML = '<option value="">Select a time</option>';
+
+    demoBookingTimeSlots.forEach((slotValue) => {
+      const option = document.createElement("option");
+      option.value = slotValue;
+      option.textContent = formatDemoTimeLabel(slotValue);
+      demoBookingTime.appendChild(option);
+    });
+
+    if (currentValue) {
+      demoBookingTime.value = currentValue;
+    }
+  };
+
+  const isDemoBookingWeekend = (dateValue) => {
+    if (!dateValue) {
+      return false;
+    }
+
+    const [yearValue, monthValue, dayValue] = dateValue.split("-").map((value) => Number(value));
+    const selectedDate = new Date(yearValue, monthValue - 1, dayValue);
+    const day = selectedDate.getDay();
+    return day === 0 || day === 6;
+  };
+
+  const updateDemoBookingSlotLabel = () => {
+    if (!demoBookingSlotLabel) {
+      return "";
+    }
+
+    const formattedDate = formatDemoDateLabel(demoBookingDate ? demoBookingDate.value : "");
+    const formattedTime = formatDemoTimeLabel(demoBookingTime ? demoBookingTime.value : "");
+    const timezone = demoBookingTimezone ? demoBookingTimezone.value : "";
+    const slotLabelParts = [formattedDate, formattedTime].filter(Boolean);
+    let slotLabel = slotLabelParts.join(" at ");
+
+    if (slotLabel && timezone) {
+      slotLabel = `${slotLabel} (${timezone})`;
+    }
+
+    demoBookingSlotLabel.value = slotLabel;
+    return slotLabel;
+  };
 
   if (
     demoPopupWidget &&
     demoPopupLauncher &&
+    demoPopupBackdrop &&
     demoPopupPanel &&
-    demoPopupClose &&
-    demoPopupCalendarFrame &&
-    demoPopupCalendarLink
+    demoPopupClose
   ) {
-    demoPopupCalendarFrame.src = googleCalendarBookingUrl;
-    demoPopupCalendarLink.href = googleCalendarBookingUrl;
-    const demoPopupDesktopMedia = window.matchMedia("(min-width: 992px)");
-    let demoPopupCloseTimeoutId = 0;
-
     const setDemoPopupOpen = (isOpen) => {
       demoPopupWidget.classList.toggle("is-open", isOpen);
       demoPopupLauncher.setAttribute("aria-expanded", String(isOpen));
       demoPopupPanel.setAttribute("aria-hidden", String(!isOpen));
+      document.body.style.overflow = isOpen ? "hidden" : "";
     };
 
-    const clearDemoPopupCloseTimeout = () => {
-      if (demoPopupCloseTimeoutId) {
-        window.clearTimeout(demoPopupCloseTimeoutId);
-        demoPopupCloseTimeoutId = 0;
-      }
-    };
-
-    const queueDemoPopupClose = () => {
-      clearDemoPopupCloseTimeout();
-      demoPopupCloseTimeoutId = window.setTimeout(() => {
-        setDemoPopupOpen(false);
-      }, 120);
-    };
-
-    demoPopupLauncher.addEventListener("click", () => {
-      if (demoPopupDesktopMedia.matches) {
+    const focusDemoBookingForm = () => {
+      if (!demoBookingName) {
         return;
       }
 
+      window.setTimeout(() => {
+        demoBookingName.focus();
+      }, 120);
+    };
+
+    const openDemoPopup = () => {
+      setDemoPopupOpen(true);
+      focusDemoBookingForm();
+    };
+
+    demoPopupLauncher.addEventListener("click", () => {
       setDemoPopupOpen(!demoPopupWidget.classList.contains("is-open"));
     });
 
     demoPopupClose.addEventListener("click", () => {
-      clearDemoPopupCloseTimeout();
       setDemoPopupOpen(false);
     });
 
-    if (demoPopupDesktopMedia.matches) {
+    demoPopupBackdrop.addEventListener("click", () => {
       setDemoPopupOpen(false);
-    }
-
-    demoPopupWidget.addEventListener("mouseenter", () => {
-      if (!demoPopupDesktopMedia.matches) {
-        return;
-      }
-
-      clearDemoPopupCloseTimeout();
-      setDemoPopupOpen(true);
     });
 
-    demoPopupWidget.addEventListener("mouseleave", () => {
-      if (!demoPopupDesktopMedia.matches) {
-        return;
-      }
+    demoPopupOpenTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
 
-      queueDemoPopupClose();
+        if (trigger.closest(".feature-interest-modal")) {
+          closeFeatureInterestModal();
+        }
+
+        openDemoPopup();
+      });
     });
 
-    document.addEventListener("click", (event) => {
-      if (demoPopupDesktopMedia.matches) {
-        return;
-      }
-
-      if (!demoPopupWidget.contains(event.target)) {
-        setDemoPopupOpen(false);
-      }
-    });
+    setDemoPopupOpen(false);
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
-        clearDemoPopupCloseTimeout();
         setDemoPopupOpen(false);
       }
     });
 
-    const syncDemoPopupMode = () => {
-      clearDemoPopupCloseTimeout();
-      setDemoPopupOpen(false);
-    };
+    if (demoBookingForm && demoBookingSubmitButton) {
+      const todayValue = formatLocalDateInputValue(new Date());
 
-    if (typeof demoPopupDesktopMedia.addEventListener === "function") {
-      demoPopupDesktopMedia.addEventListener("change", syncDemoPopupMode);
-    } else if (typeof demoPopupDesktopMedia.addListener === "function") {
-      demoPopupDesktopMedia.addListener(syncDemoPopupMode);
+      populateDemoBookingTimeOptions();
+
+      if (demoBookingDate) {
+        demoBookingDate.min = todayValue;
+        demoBookingDate.value = getNextBusinessDateValue();
+      }
+
+      if (demoBookingTimezone) {
+        demoBookingTimezone.value = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      }
+
+      updateDemoBookingSlotLabel();
+
+      if (demoBookingDate) {
+        demoBookingDate.addEventListener("change", () => {
+          if (isDemoBookingWeekend(demoBookingDate.value)) {
+            demoBookingDate.setCustomValidity("Please choose a weekday for your demo request.");
+          } else {
+            demoBookingDate.setCustomValidity("");
+          }
+
+          updateDemoBookingSlotLabel();
+        });
+      }
+
+      if (demoBookingTime) {
+        demoBookingTime.addEventListener("change", () => {
+          updateDemoBookingSlotLabel();
+        });
+      }
+
+      demoBookingForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (demoBookingDate && isDemoBookingWeekend(demoBookingDate.value)) {
+          demoBookingDate.setCustomValidity("Please choose a weekday for your demo request.");
+        }
+
+        if (!demoBookingForm.reportValidity()) {
+          return;
+        }
+
+        const requestedSlotLabel = updateDemoBookingSlotLabel();
+
+        demoBookingSubmitButton.disabled = true;
+        demoBookingSubmitButton.innerHTML = 'Sending Request <i class="ti-reload"></i>';
+
+        if (demoBookingMessage) {
+          demoBookingMessage.className = "callback-message";
+          demoBookingMessage.textContent = "";
+        }
+
+        try {
+          const formData = new FormData(demoBookingForm);
+
+          if (requestedSlotLabel) {
+            formData.set("requested_slot", requestedSlotLabel);
+          }
+
+          if (demoBookingTimezone && demoBookingTimezone.value) {
+            formData.set("timezone", demoBookingTimezone.value);
+          }
+
+          const response = await fetch(demoBookingForm.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+              Accept: "application/json"
+            }
+          });
+
+          if (!response.ok) {
+            throw new Error("Something went wrong. Please try again or email support@gocashly.io.");
+          }
+
+          demoBookingForm.reset();
+          populateDemoBookingTimeOptions();
+
+          if (demoBookingDate) {
+            demoBookingDate.min = todayValue;
+            demoBookingDate.value = getNextBusinessDateValue();
+            demoBookingDate.setCustomValidity("");
+          }
+
+          if (demoBookingTimezone) {
+            demoBookingTimezone.value = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+          }
+
+          updateDemoBookingSlotLabel();
+
+          if (demoBookingMessage) {
+            demoBookingMessage.className = "callback-message is-success";
+            demoBookingMessage.textContent = "Your demo request has been sent. We will confirm your selected time by email.";
+          }
+        } catch (error) {
+          if (demoBookingMessage) {
+            demoBookingMessage.className = "callback-message is-error";
+            demoBookingMessage.textContent = error.message || "Network error. Please try again in a moment.";
+          }
+        } finally {
+          demoBookingSubmitButton.disabled = false;
+          demoBookingSubmitButton.innerHTML = `${defaultDemoBookingButtonText}`;
+        }
+      });
     }
   }
 
@@ -509,6 +723,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const featureInterestModalCardCopy = document.getElementById("featureInterestModalCardCopy");
   const featureInterestModalQuote = document.getElementById("featureInterestModalQuote");
   const featureInterestModalCta = document.getElementById("featureInterestModalCta");
+  const pricingTierModal = document.getElementById("pricingTierModal");
+  const pricingTierTriggers = Array.from(document.querySelectorAll("[data-pricing-tier-open]"));
+  const pricingTierCloseTriggers = Array.from(document.querySelectorAll("[data-pricing-tier-close]"));
+  const pricingTierModalEyebrow = document.getElementById("pricingTierModalEyebrow");
+  const pricingTierModalTitle = document.getElementById("pricingTierModalTitle");
+  const pricingTierModalLead = document.getElementById("pricingTierModalLead");
+  const pricingTierModalMonthly = document.getElementById("pricingTierModalMonthly");
+  const pricingTierModalMonthlyNote = document.getElementById("pricingTierModalMonthlyNote");
+  const pricingTierModalYearly = document.getElementById("pricingTierModalYearly");
+  const pricingTierModalYearlyNote = document.getElementById("pricingTierModalYearlyNote");
+  const pricingTierModalDiscount = document.getElementById("pricingTierModalDiscount");
+  const pricingTierModalAnnualAmount = document.getElementById("pricingTierModalAnnualAmount");
+  const pricingTierModalSavings = document.getElementById("pricingTierModalSavings");
+  const pricingTierModalCloseButton = pricingTierModal
+    ? pricingTierModal.querySelector(".pricing-tier-modal__close")
+    : null;
   const scarlettModalIcon = document.getElementById("scarlettModalIcon");
   const scarlettModalTitle = document.getElementById("scarlettModalTitle");
   const scarlettModalDescription = document.getElementById("scarlettModalDescription");
@@ -519,8 +749,39 @@ document.addEventListener("DOMContentLoaded", () => {
   const scarlettConfigureButton = document.getElementById("scarlettConfigureButton");
   const scarlettSuccessModalTitle = document.getElementById("scarlettSuccessModalTitle");
   const scarlettSuccessModalMessage = document.getElementById("scarlettSuccessModalMessage");
+  const capabilityTourWrap = document.querySelector("[data-capability-tour-wrap]");
+  const capabilityTour = document.getElementById("capabilityTour");
+  const capabilityTourBubble = capabilityTour
+    ? capabilityTour.querySelector(".capability-tour__bubble")
+    : null;
+  const capabilityTourCursor = capabilityTour
+    ? capabilityTour.querySelector(".capability-tour__cursor")
+    : null;
+  const capabilityTourPrimaryTarget = capabilityTourWrap
+    ? capabilityTourWrap.querySelector(".capability-card--tour-target")
+    : null;
+  const capabilityTourTargets = capabilityTourWrap
+    ? Array.from(capabilityTourWrap.querySelectorAll(".capability-card--interactive"))
+    : [];
   let activeIntegrationKey = "scarlett";
+  let capabilityTourIsInView = false;
+  let capabilityTourIsVisible = false;
+  let capabilityTourHasShownForCurrentEntry = false;
+  let capabilityTourShowTimer = null;
+  let capabilityTourHideTimer = null;
+  let capabilityTourResetTimer = null;
+  let capabilityTourObserver = null;
+  let activePricingTierTrigger = null;
   const featureInterestModalContent = {
+    "call-analytics": {
+      eyebrow: "Call Analytics Preview",
+      heading: "Want to see how call analytics works inside Cashly?",
+      lead: "Book a live demo with us and we will show you how teams track connection rates, handle time, user activity, and call volume without leaving the CRM workflow.",
+      iconClass: "ti-headphone-alt",
+      cardTitle: "Call Analytics",
+      cardCopy: "See how call performance stays visible at both the team and user level, so managers and brokers can spot patterns faster and make better follow-up decisions.",
+      quote: "We will walk through activity visibility, team performance tracking, and how call data supports daily brokerage execution."
+    },
     dealsense: {
       eyebrow: "DealSense Preview",
       heading: "Excited to know more about DealSense ranking?",
@@ -624,6 +885,223 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const positionCapabilityTour = () => {
+    if (!capabilityTourWrap || !capabilityTour || !capabilityTourPrimaryTarget || !capabilityTourBubble || !capabilityTourCursor) {
+      return;
+    }
+
+    const wrapRect = capabilityTourWrap.getBoundingClientRect();
+    const targetRect = capabilityTourPrimaryTarget.getBoundingClientRect();
+    const bubbleWidth = capabilityTourBubble.offsetWidth || 250;
+    const isCompact = window.innerWidth <= 767;
+
+    if (isCompact) {
+      capabilityTour.style.removeProperty("--capability-tour-bubble-x");
+      capabilityTour.style.removeProperty("--capability-tour-bubble-y");
+      capabilityTour.style.removeProperty("--capability-tour-cursor-x");
+      capabilityTour.style.removeProperty("--capability-tour-cursor-y");
+      return;
+    }
+
+    const bubbleX = Math.max(0, Math.min(
+      targetRect.left - wrapRect.left,
+      Math.max(0, wrapRect.width - bubbleWidth - 12)
+    ));
+    const bubbleY = Math.max(0, targetRect.top - wrapRect.top - 62);
+    const cursorX = targetRect.left - wrapRect.left + Math.min(targetRect.width - 42, targetRect.width * 0.56);
+    const cursorY = targetRect.top - wrapRect.top + Math.min(targetRect.height - 46, targetRect.height * 0.54);
+
+    capabilityTour.style.setProperty("--capability-tour-bubble-x", `${Math.round(bubbleX)}px`);
+    capabilityTour.style.setProperty("--capability-tour-bubble-y", `${Math.round(bubbleY)}px`);
+    capabilityTour.style.setProperty("--capability-tour-cursor-x", `${Math.round(cursorX)}px`);
+    capabilityTour.style.setProperty("--capability-tour-cursor-y", `${Math.round(cursorY)}px`);
+  };
+
+  const clearCapabilityTourTimers = () => {
+    if (capabilityTourShowTimer) {
+      window.clearTimeout(capabilityTourShowTimer);
+      capabilityTourShowTimer = null;
+    }
+
+    if (capabilityTourHideTimer) {
+      window.clearTimeout(capabilityTourHideTimer);
+      capabilityTourHideTimer = null;
+    }
+
+    if (capabilityTourResetTimer) {
+      window.clearTimeout(capabilityTourResetTimer);
+      capabilityTourResetTimer = null;
+    }
+  };
+
+  const showCapabilityTour = () => {
+    if (
+      !capabilityTour ||
+      !capabilityTourWrap ||
+      !capabilityTourTargets.length ||
+      !capabilityTourIsInView ||
+      capabilityTourIsVisible ||
+      capabilityTourHasShownForCurrentEntry
+    ) {
+      return;
+    }
+
+    clearCapabilityTourTimers();
+    capabilityTour.hidden = false;
+    capabilityTour.setAttribute("aria-hidden", "false");
+    capabilityTourWrap.classList.add("is-tour-active");
+    positionCapabilityTour();
+    capabilityTourIsVisible = true;
+
+    window.requestAnimationFrame(() => {
+      capabilityTour.classList.add("is-visible");
+    });
+
+    capabilityTourHideTimer = window.setTimeout(() => {
+      dismissCapabilityTour();
+    }, 3800);
+  };
+
+  const dismissCapabilityTour = () => {
+    if (!capabilityTour) {
+      return;
+    }
+
+    clearCapabilityTourTimers();
+
+    capabilityTour.classList.remove("is-visible");
+    capabilityTourIsVisible = false;
+
+    if (capabilityTourIsInView) {
+      capabilityTourHasShownForCurrentEntry = true;
+    }
+
+    if (capabilityTourWrap) {
+      capabilityTourWrap.classList.remove("is-tour-active");
+    }
+
+    capabilityTourResetTimer = window.setTimeout(() => {
+      capabilityTour.hidden = true;
+      capabilityTour.setAttribute("aria-hidden", "true");
+    }, 220);
+  };
+
+  if (capabilityTourWrap && capabilityTour && capabilityTourPrimaryTarget) {
+    window.addEventListener("resize", positionCapabilityTour, { passive: true });
+  }
+
+  const formatPricingAmount = (value) => {
+    const numericValue = Number(value);
+
+    if (!Number.isFinite(numericValue)) {
+      return value;
+    }
+
+    const fractionDigits = Number.isInteger(numericValue) ? 0 : 2;
+    return numericValue.toLocaleString("en-CA", {
+      minimumFractionDigits: fractionDigits,
+      maximumFractionDigits: 2
+    });
+  };
+
+  const pricingTierContent = {
+    "team-6": {
+      eyebrow: "Growing team pricing",
+      title: "6+ users pricing",
+      lead: "Best for growing teams that want to roll out Cashly across multiple brokers and support staff.",
+      extraDiscountRate: 0.05
+    },
+    "team-20": {
+      eyebrow: "Established team pricing",
+      title: "20+ users pricing",
+      lead: "Ideal for established brokerages that want one shared operating system across the team.",
+      extraDiscountRate: 0.1
+    },
+    "team-50": {
+      eyebrow: "Scale pricing",
+      title: "50+ users pricing",
+      lead: "Built for larger organizations standardizing workflow, calling, AI tools, and training at scale.",
+      extraDiscountRate: 0.2
+    },
+    "team-100": {
+      eyebrow: "Enterprise pricing",
+      title: "100+ users pricing",
+      lead: "For enterprise-scale rollouts, speak with our team for implementation support and pricing alignment.",
+      extraDiscountRate: 0.3
+    }
+  };
+
+  const getPricingTierAmounts = (extraDiscountRate = 0) => {
+    const monthlyPrice = 199;
+    const monthlyTierPrice = monthlyPrice * (1 - extraDiscountRate);
+    const annualListPrice = monthlyPrice * 12;
+    const annualBaseBilled = annualListPrice * 0.8;
+    const annualTierBilled = annualBaseBilled * (1 - extraDiscountRate);
+
+    return {
+      monthlyPrice,
+      monthlyTierPrice,
+      annualListPrice,
+      annualTierBilled,
+      annualEffectiveMonthly: annualTierBilled / 12,
+      annualSavings: annualListPrice - annualTierBilled
+    };
+  };
+
+  pricingCalculators.forEach((calculator) => {
+    const defaultPeriod = calculator.dataset.defaultPeriod === "monthly" ? "monthly" : "yearly";
+    const monthlyPrice = 199;
+    const yearlyEffectivePrice = 159.2;
+    const yearlyBilled = 1910.4;
+    const yearlySavings = 477.6;
+    const amountElement = calculator.querySelector("[data-pricing-amount]");
+    const unitElement = calculator.querySelector("[data-pricing-unit]");
+    const subtextElement = calculator.querySelector("[data-pricing-subtext]");
+    const badgeElement = calculator.querySelector("[data-pricing-badge]");
+    const savingsElement = calculator.querySelector("[data-pricing-savings]");
+    const buttons = Array.from(calculator.querySelectorAll("[data-pricing-period]"));
+
+    const renderPricingPeriod = (period) => {
+      const isYearly = period === "yearly";
+
+      buttons.forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.pricingPeriod === period);
+      });
+
+      if (amountElement) {
+        amountElement.textContent = formatPricingAmount(isYearly ? yearlyEffectivePrice : monthlyPrice);
+      }
+
+      if (unitElement) {
+        unitElement.textContent = "/month";
+      }
+
+      if (subtextElement) {
+        subtextElement.textContent = isYearly
+          ? `Billed annually at CAD$${formatPricingAmount(yearlyBilled)} per user each year.`
+          : "Per user, billed monthly with full feature access.";
+      }
+
+      if (badgeElement) {
+        badgeElement.textContent = isYearly ? "Best value" : "Monthly billing";
+      }
+
+      if (savingsElement) {
+        savingsElement.textContent = isYearly
+          ? `CAD$${formatPricingAmount(yearlySavings)} saved per user`
+          : `Save CAD$${formatPricingAmount(yearlySavings)} with annual billing`;
+      }
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        renderPricingPeriod(button.dataset.pricingPeriod === "monthly" ? "monthly" : "yearly");
+      });
+    });
+
+    renderPricingPeriod(defaultPeriod);
+  });
+
   const toggleModal = (modal, isOpen) => {
     if (!modal) {
       return;
@@ -636,6 +1114,95 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+    }
+  };
+
+  const setActivePricingTierTrigger = (trigger) => {
+    if (activePricingTierTrigger) {
+      activePricingTierTrigger.classList.remove("pricing-scale__row--active");
+    }
+
+    activePricingTierTrigger = trigger || null;
+
+    if (activePricingTierTrigger) {
+      activePricingTierTrigger.classList.add("pricing-scale__row--active");
+    }
+  };
+
+  const applyPricingTierModalContent = (tierKey) => {
+    const content = pricingTierContent[tierKey] || pricingTierContent["team-6"];
+    const amounts = getPricingTierAmounts(content.extraDiscountRate);
+    const extraDiscountPercent = Math.round(content.extraDiscountRate * 100);
+
+    if (pricingTierModalEyebrow) {
+      pricingTierModalEyebrow.textContent = content.eyebrow;
+    }
+
+    if (pricingTierModalTitle) {
+      pricingTierModalTitle.textContent = content.title;
+    }
+
+    if (pricingTierModalLead) {
+      pricingTierModalLead.textContent = content.lead;
+    }
+
+    if (pricingTierModalMonthly) {
+      pricingTierModalMonthly.textContent = `CAD$${formatPricingAmount(amounts.monthlyTierPrice)} / user / month`;
+    }
+
+    if (pricingTierModalMonthlyNote) {
+      pricingTierModalMonthlyNote.textContent = `Month-to-month billing with ${extraDiscountPercent}% team savings already applied.`;
+    }
+
+    if (pricingTierModalYearly) {
+      pricingTierModalYearly.textContent = `CAD$${formatPricingAmount(amounts.annualEffectiveMonthly)} / user / month`;
+    }
+
+    if (pricingTierModalYearlyNote) {
+      pricingTierModalYearlyNote.textContent = `Billed annually at CAD$${formatPricingAmount(amounts.annualTierBilled)} per user with the 20% yearly discount plus ${extraDiscountPercent}% team savings.`;
+    }
+
+    if (pricingTierModalDiscount) {
+      pricingTierModalDiscount.textContent = `20% yearly + ${extraDiscountPercent}% team savings`;
+    }
+
+    if (pricingTierModalAnnualAmount) {
+      pricingTierModalAnnualAmount.textContent = `CAD$${formatPricingAmount(amounts.annualTierBilled)} / user / year`;
+    }
+
+    if (pricingTierModalSavings) {
+      pricingTierModalSavings.textContent = `CAD$${formatPricingAmount(amounts.annualSavings)} saved per user yearly`;
+    }
+  };
+
+  const openPricingTierModal = (tierKey, trigger = null) => {
+    if (!pricingTierModal) {
+      return;
+    }
+
+    setActivePricingTierTrigger(trigger);
+    applyPricingTierModalContent(tierKey);
+    toggleModal(pricingTierModal, true);
+
+    window.setTimeout(() => {
+      if (pricingTierModalCloseButton) {
+        pricingTierModalCloseButton.focus();
+      }
+    }, 120);
+  };
+
+  const closePricingTierModal = ({ restoreFocus = true } = {}) => {
+    if (!pricingTierModal) {
+      return;
+    }
+
+    const triggerToFocus = restoreFocus ? activePricingTierTrigger : null;
+
+    toggleModal(pricingTierModal, false);
+    setActivePricingTierTrigger(null);
+
+    if (triggerToFocus && typeof triggerToFocus.focus === "function") {
+      triggerToFocus.focus();
     }
   };
 
@@ -670,9 +1237,6 @@ document.addEventListener("DOMContentLoaded", () => {
       featureInterestModalQuote.textContent = content.quote;
     }
 
-    if (featureInterestModalCta) {
-      featureInterestModalCta.href = googleCalendarBookingUrl;
-    }
   };
 
   let activeBrokerCopilotScenarioKey = "follow_up";
@@ -868,6 +1432,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function closeFeatureInterestModal() {
     toggleModal(featureInterestModal, false);
+  }
+
+  if (pricingTierModal && pricingTierTriggers.length > 0) {
+    pricingTierTriggers.forEach((trigger) => {
+      const tierKey = trigger.dataset.pricingTierOpen || "team-6";
+
+      trigger.addEventListener("click", () => {
+        openPricingTierModal(tierKey, trigger);
+      });
+
+      trigger.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") {
+          return;
+        }
+
+        event.preventDefault();
+        openPricingTierModal(tierKey, trigger);
+      });
+    });
+
+    pricingTierCloseTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        closePricingTierModal();
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && pricingTierModal.classList.contains("is-open")) {
+        closePricingTierModal();
+      }
+    });
   }
 
   let campaignCallingIntervalId = null;
@@ -1357,6 +1952,47 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleModal(opportunityPipelineModal, false);
   };
 
+  if (capabilityTour && capabilityTourWrap && capabilityTourTargets.length) {
+    if ("IntersectionObserver" in window) {
+      capabilityTourObserver = new IntersectionObserver((entries) => {
+        const isVisible = entries.some((entry) => entry.isIntersecting);
+
+        if (!isVisible) {
+          capabilityTourIsInView = false;
+          capabilityTourHasShownForCurrentEntry = false;
+          clearCapabilityTourTimers();
+
+          if (capabilityTourIsVisible) {
+            capabilityTour.classList.remove("is-visible");
+            capabilityTour.hidden = true;
+            capabilityTour.setAttribute("aria-hidden", "true");
+            capabilityTourIsVisible = false;
+          }
+
+          if (capabilityTourWrap) {
+            capabilityTourWrap.classList.remove("is-tour-active");
+          }
+
+          return;
+        }
+
+        capabilityTourIsInView = true;
+        positionCapabilityTour();
+
+        if (!capabilityTourHasShownForCurrentEntry && !capabilityTourIsVisible && !capabilityTourShowTimer) {
+          capabilityTourShowTimer = window.setTimeout(showCapabilityTour, 650);
+        }
+      }, {
+        threshold: 0.35
+      });
+
+      capabilityTourObserver.observe(capabilityTourWrap);
+    } else {
+      capabilityTourIsInView = true;
+      capabilityTourShowTimer = window.setTimeout(showCapabilityTour, 1200);
+    }
+  }
+
   integrationCardTriggers.forEach((trigger) => {
     trigger.addEventListener("click", (event) => {
       event.preventDefault();
@@ -1385,12 +2021,14 @@ document.addEventListener("DOMContentLoaded", () => {
   brokerCopilotTriggers.forEach((trigger) => {
     trigger.addEventListener("click", (event) => {
       event.preventDefault();
+      dismissCapabilityTour();
       openBrokerCopilotModal("follow_up");
     });
 
     trigger.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
+        dismissCapabilityTour();
         openBrokerCopilotModal("follow_up");
       }
     });
@@ -1406,12 +2044,14 @@ document.addEventListener("DOMContentLoaded", () => {
   opportunityPipelineTriggers.forEach((trigger) => {
     trigger.addEventListener("click", (event) => {
       event.preventDefault();
+      dismissCapabilityTour();
       openOpportunityPipelineModal();
     });
 
     trigger.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
+        dismissCapabilityTour();
         openOpportunityPipelineModal();
       }
     });
@@ -1427,12 +2067,14 @@ document.addEventListener("DOMContentLoaded", () => {
   campaignCallingTriggers.forEach((trigger) => {
     trigger.addEventListener("click", (event) => {
       event.preventDefault();
+      dismissCapabilityTour();
       openCampaignCallingModal();
     });
 
     trigger.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
+        dismissCapabilityTour();
         openCampaignCallingModal();
       }
     });
@@ -1448,12 +2090,14 @@ document.addEventListener("DOMContentLoaded", () => {
   featureInterestTriggers.forEach((trigger) => {
     trigger.addEventListener("click", (event) => {
       event.preventDefault();
+      dismissCapabilityTour();
       openFeatureInterestModal(trigger.dataset.featureInterestOpen || "dealsense");
     });
 
     trigger.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
+        dismissCapabilityTour();
         openFeatureInterestModal(trigger.dataset.featureInterestOpen || "dealsense");
       }
     });
@@ -1474,7 +2118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   brokerCopilotPromptButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const scenarioKey = button.dataset.brokerPrompt || "follow_up";
+      const scenarioKey = button.dataset.brokerPrompt || activeBrokerCopilotScenarioKey || "follow_up";
       renderBrokerCopilotScenario(scenarioKey);
     });
   });

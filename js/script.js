@@ -91,19 +91,36 @@
     // -----------------------------
     //  Testimonial Slider
     // -----------------------------
-    $('.testimonial-slider').slick({
-      slidesToShow: 2,
+    $('.testimonial-slider--centered').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerMode: true,
+      centerPadding: '160px',
       infinite: true,
-      arrows: false,
+      arrows: true,
       autoplay: true,
-      autoplaySpeed: 2000,
+      autoplaySpeed: 2200,
       dots: true,
+      adaptiveHeight: true,
       responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            centerMode: true,
+            centerPadding: '90px',
+            arrows: true
+          }
+        },
         {
           breakpoint: 991,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            centerMode: false,
+            centerPadding: '0px',
+            arrows: false
           }
         }
       ]
