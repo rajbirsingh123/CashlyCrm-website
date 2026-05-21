@@ -8796,7 +8796,7 @@
 }
 
 .cashly-modern.pricing-page .pricing-hero .section-title-modern h1 {
-  max-width: 12ch;
+  max-width: 14ch;
 }
 
 .cashly-modern.pricing-page .pricing-hero .section-title-modern p {
@@ -8934,6 +8934,13 @@
   letter-spacing: -0.05em;
 }
 
+.cashly-modern.pricing-page .pricing-card__price .pricing-card__amount {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(3rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+}
+
 .cashly-modern.pricing-page .pricing-card__unit {
   color: #607188;
   font-size: 1rem;
@@ -9016,6 +9023,28 @@
   font-size: 0.92rem;
   line-height: 1.7;
   margin: 0;
+}
+
+.cashly-modern.pricing-page .pricing-plan-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cashly-modern.pricing-page .pricing-plan-card {
+  height: 100%;
+}
+
+.cashly-modern.pricing-page .pricing-plan-card--featured {
+  border-color: rgba(36, 89, 211, 0.18);
+  box-shadow: 0 32px 72px rgba(26, 52, 97, 0.12);
+  transform: translateY(-8px);
+}
+
+.cashly-modern.pricing-page .pricing-plan-note {
+  color: #5f7085;
+  margin: 1rem auto 0;
+  max-width: 48rem;
 }
 
 .cashly-modern.pricing-page .pricing-feature-grid,
@@ -9662,6 +9691,10 @@
     grid-template-columns: 1fr;
   }
 
+  .cashly-modern.pricing-page .pricing-plan-grid {
+    grid-template-columns: 1fr;
+  }
+
   .cashly-modern.pricing-page .pricing-feature-grid,
   .cashly-modern.pricing-page .pricing-faq__grid {
     grid-template-columns: 1fr;
@@ -9761,6 +9794,10 @@
   .cashly-modern.pricing-page .pricing-card__summary {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .cashly-modern.pricing-page .pricing-plan-card--featured {
+    transform: none;
   }
 
   .cashly-modern.pricing-page .pricing-card__actions {

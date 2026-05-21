@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const calculatorLeadTurnstileContainer = document.getElementById("calculatorLeadTurnstile");
   const calculatorResultModal = document.getElementById("calculatorResultModal");
   const calculatorResultDate = document.getElementById("calculator-result-date");
-  const pricingCalculators = Array.from(document.querySelectorAll("[data-pricing-calculator]"));
   const defaultCalculatorLeadButtonText = calculatorLeadSubmitButton ? calculatorLeadSubmitButton.textContent.trim() : "Get Your Rates";
   const calculatorModalHash = "#borrowerCalculatorModal";
   let calculatorLeadTurnstileWidgetId = null;
@@ -723,22 +722,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const featureInterestModalCardCopy = document.getElementById("featureInterestModalCardCopy");
   const featureInterestModalQuote = document.getElementById("featureInterestModalQuote");
   const featureInterestModalCta = document.getElementById("featureInterestModalCta");
-  const pricingTierModal = document.getElementById("pricingTierModal");
-  const pricingTierTriggers = Array.from(document.querySelectorAll("[data-pricing-tier-open]"));
-  const pricingTierCloseTriggers = Array.from(document.querySelectorAll("[data-pricing-tier-close]"));
-  const pricingTierModalEyebrow = document.getElementById("pricingTierModalEyebrow");
-  const pricingTierModalTitle = document.getElementById("pricingTierModalTitle");
-  const pricingTierModalLead = document.getElementById("pricingTierModalLead");
-  const pricingTierModalMonthly = document.getElementById("pricingTierModalMonthly");
-  const pricingTierModalMonthlyNote = document.getElementById("pricingTierModalMonthlyNote");
-  const pricingTierModalYearly = document.getElementById("pricingTierModalYearly");
-  const pricingTierModalYearlyNote = document.getElementById("pricingTierModalYearlyNote");
-  const pricingTierModalDiscount = document.getElementById("pricingTierModalDiscount");
-  const pricingTierModalAnnualAmount = document.getElementById("pricingTierModalAnnualAmount");
-  const pricingTierModalSavings = document.getElementById("pricingTierModalSavings");
-  const pricingTierModalCloseButton = pricingTierModal
-    ? pricingTierModal.querySelector(".pricing-tier-modal__close")
-    : null;
   const scarlettModalIcon = document.getElementById("scarlettModalIcon");
   const scarlettModalTitle = document.getElementById("scarlettModalTitle");
   const scarlettModalDescription = document.getElementById("scarlettModalDescription");
@@ -771,7 +754,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let capabilityTourHideTimer = null;
   let capabilityTourResetTimer = null;
   let capabilityTourObserver = null;
-  let activePricingTierTrigger = null;
   const featureInterestModalContent = {
     "call-analytics": {
       eyebrow: "Call Analytics Preview",
@@ -990,118 +972,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", positionCapabilityTour, { passive: true });
   }
 
-  const formatPricingAmount = (value) => {
-    const numericValue = Number(value);
-
-    if (!Number.isFinite(numericValue)) {
-      return value;
-    }
-
-    const fractionDigits = Number.isInteger(numericValue) ? 0 : 2;
-    return numericValue.toLocaleString("en-CA", {
-      minimumFractionDigits: fractionDigits,
-      maximumFractionDigits: 2
-    });
-  };
-
-  const pricingTierContent = {
-    "team-6": {
-      eyebrow: "Growing team pricing",
-      title: "6+ users pricing",
-      lead: "Best for growing teams that want to roll out Cashly across multiple brokers and support staff.",
-      extraDiscountRate: 0.05
-    },
-    "team-20": {
-      eyebrow: "Established team pricing",
-      title: "20+ users pricing",
-      lead: "Ideal for established brokerages that want one shared operating system across the team.",
-      extraDiscountRate: 0.1
-    },
-    "team-50": {
-      eyebrow: "Scale pricing",
-      title: "50+ users pricing",
-      lead: "Built for larger organizations standardizing workflow, calling, AI tools, and training at scale.",
-      extraDiscountRate: 0.2
-    },
-    "team-100": {
-      eyebrow: "Enterprise pricing",
-      title: "100+ users pricing",
-      lead: "For enterprise-scale rollouts, speak with our team for implementation support and pricing alignment.",
-      extraDiscountRate: 0.3
-    }
-  };
-
-  const getPricingTierAmounts = (extraDiscountRate = 0) => {
-    const monthlyPrice = 199;
-    const monthlyTierPrice = monthlyPrice * (1 - extraDiscountRate);
-    const annualListPrice = monthlyPrice * 12;
-    const annualBaseBilled = annualListPrice * 0.8;
-    const annualTierBilled = annualBaseBilled * (1 - extraDiscountRate);
-
-    return {
-      monthlyPrice,
-      monthlyTierPrice,
-      annualListPrice,
-      annualTierBilled,
-      annualEffectiveMonthly: annualTierBilled / 12,
-      annualSavings: annualListPrice - annualTierBilled
-    };
-  };
-
-  pricingCalculators.forEach((calculator) => {
-    const defaultPeriod = calculator.dataset.defaultPeriod === "monthly" ? "monthly" : "yearly";
-    const monthlyPrice = 199;
-    const yearlyEffectivePrice = 159.2;
-    const yearlyBilled = 1910.4;
-    const yearlySavings = 477.6;
-    const amountElement = calculator.querySelector("[data-pricing-amount]");
-    const unitElement = calculator.querySelector("[data-pricing-unit]");
-    const subtextElement = calculator.querySelector("[data-pricing-subtext]");
-    const badgeElement = calculator.querySelector("[data-pricing-badge]");
-    const savingsElement = calculator.querySelector("[data-pricing-savings]");
-    const buttons = Array.from(calculator.querySelectorAll("[data-pricing-period]"));
-
-    const renderPricingPeriod = (period) => {
-      const isYearly = period === "yearly";
-
-      buttons.forEach((button) => {
-        button.classList.toggle("is-active", button.dataset.pricingPeriod === period);
-      });
-
-      if (amountElement) {
-        amountElement.textContent = formatPricingAmount(isYearly ? yearlyEffectivePrice : monthlyPrice);
-      }
-
-      if (unitElement) {
-        unitElement.textContent = "/month";
-      }
-
-      if (subtextElement) {
-        subtextElement.textContent = isYearly
-          ? `Billed annually at CAD$${formatPricingAmount(yearlyBilled)} per user each year.`
-          : "Per user, billed monthly with full feature access.";
-      }
-
-      if (badgeElement) {
-        badgeElement.textContent = isYearly ? "Best value" : "Monthly billing";
-      }
-
-      if (savingsElement) {
-        savingsElement.textContent = isYearly
-          ? `CAD$${formatPricingAmount(yearlySavings)} saved per user`
-          : `Save CAD$${formatPricingAmount(yearlySavings)} with annual billing`;
-      }
-    };
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        renderPricingPeriod(button.dataset.pricingPeriod === "monthly" ? "monthly" : "yearly");
-      });
-    });
-
-    renderPricingPeriod(defaultPeriod);
-  });
-
   const toggleModal = (modal, isOpen) => {
     if (!modal) {
       return;
@@ -1114,95 +984,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
-    }
-  };
-
-  const setActivePricingTierTrigger = (trigger) => {
-    if (activePricingTierTrigger) {
-      activePricingTierTrigger.classList.remove("pricing-scale__row--active");
-    }
-
-    activePricingTierTrigger = trigger || null;
-
-    if (activePricingTierTrigger) {
-      activePricingTierTrigger.classList.add("pricing-scale__row--active");
-    }
-  };
-
-  const applyPricingTierModalContent = (tierKey) => {
-    const content = pricingTierContent[tierKey] || pricingTierContent["team-6"];
-    const amounts = getPricingTierAmounts(content.extraDiscountRate);
-    const extraDiscountPercent = Math.round(content.extraDiscountRate * 100);
-
-    if (pricingTierModalEyebrow) {
-      pricingTierModalEyebrow.textContent = content.eyebrow;
-    }
-
-    if (pricingTierModalTitle) {
-      pricingTierModalTitle.textContent = content.title;
-    }
-
-    if (pricingTierModalLead) {
-      pricingTierModalLead.textContent = content.lead;
-    }
-
-    if (pricingTierModalMonthly) {
-      pricingTierModalMonthly.textContent = `CAD$${formatPricingAmount(amounts.monthlyTierPrice)} / user / month`;
-    }
-
-    if (pricingTierModalMonthlyNote) {
-      pricingTierModalMonthlyNote.textContent = `Month-to-month billing with ${extraDiscountPercent}% team savings already applied.`;
-    }
-
-    if (pricingTierModalYearly) {
-      pricingTierModalYearly.textContent = `CAD$${formatPricingAmount(amounts.annualEffectiveMonthly)} / user / month`;
-    }
-
-    if (pricingTierModalYearlyNote) {
-      pricingTierModalYearlyNote.textContent = `Billed annually at CAD$${formatPricingAmount(amounts.annualTierBilled)} per user with the 20% yearly discount plus ${extraDiscountPercent}% team savings.`;
-    }
-
-    if (pricingTierModalDiscount) {
-      pricingTierModalDiscount.textContent = `20% yearly + ${extraDiscountPercent}% team savings`;
-    }
-
-    if (pricingTierModalAnnualAmount) {
-      pricingTierModalAnnualAmount.textContent = `CAD$${formatPricingAmount(amounts.annualTierBilled)} / user / year`;
-    }
-
-    if (pricingTierModalSavings) {
-      pricingTierModalSavings.textContent = `CAD$${formatPricingAmount(amounts.annualSavings)} saved per user yearly`;
-    }
-  };
-
-  const openPricingTierModal = (tierKey, trigger = null) => {
-    if (!pricingTierModal) {
-      return;
-    }
-
-    setActivePricingTierTrigger(trigger);
-    applyPricingTierModalContent(tierKey);
-    toggleModal(pricingTierModal, true);
-
-    window.setTimeout(() => {
-      if (pricingTierModalCloseButton) {
-        pricingTierModalCloseButton.focus();
-      }
-    }, 120);
-  };
-
-  const closePricingTierModal = ({ restoreFocus = true } = {}) => {
-    if (!pricingTierModal) {
-      return;
-    }
-
-    const triggerToFocus = restoreFocus ? activePricingTierTrigger : null;
-
-    toggleModal(pricingTierModal, false);
-    setActivePricingTierTrigger(null);
-
-    if (triggerToFocus && typeof triggerToFocus.focus === "function") {
-      triggerToFocus.focus();
     }
   };
 
@@ -1432,37 +1213,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function closeFeatureInterestModal() {
     toggleModal(featureInterestModal, false);
-  }
-
-  if (pricingTierModal && pricingTierTriggers.length > 0) {
-    pricingTierTriggers.forEach((trigger) => {
-      const tierKey = trigger.dataset.pricingTierOpen || "team-6";
-
-      trigger.addEventListener("click", () => {
-        openPricingTierModal(tierKey, trigger);
-      });
-
-      trigger.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") {
-          return;
-        }
-
-        event.preventDefault();
-        openPricingTierModal(tierKey, trigger);
-      });
-    });
-
-    pricingTierCloseTriggers.forEach((trigger) => {
-      trigger.addEventListener("click", () => {
-        closePricingTierModal();
-      });
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && pricingTierModal.classList.contains("is-open")) {
-        closePricingTierModal();
-      }
-    });
   }
 
   let campaignCallingIntervalId = null;
