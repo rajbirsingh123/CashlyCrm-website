@@ -9483,6 +9483,27 @@
   max-width: 760px;
 }
 
+.cashly-modern .legal-shell__eyebrow {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.cashly-modern .legal-shell__eyebrow .section-kicker {
+  margin-bottom: 0;
+}
+
+.cashly-modern .legal-shell__updated {
+  color: rgba(19, 35, 58, 0.52);
+  font-family: "Manrope", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
 .cashly-modern .legal-frame {
   background: #fff;
   border: 1px solid rgba(19, 35, 58, 0.08);
